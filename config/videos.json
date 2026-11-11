@@ -1,0 +1,2128 @@
+{
+  "schema_version": 1,
+  "time_zone": "Asia/Kolkata",
+  "videos": [
+    {
+      "id": "long-01",
+      "title": "How to Use ChatGPT – Complete Beginner Tutorial (2026)",
+      "type": "long",
+      "description": "'20 everyday ChatGPT tasks' prompt sheet",
+      "release_at_ist": "2026-11-16 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "27c06811ff5ec72613e8c7d822c416bced4d4bb383ee43c70feaa776ca44592d",
+      "resources": [
+        {
+          "file": "20-Everyday-ChatGPT-Tasks.pdf",
+          "bytes": 136331
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52141
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 510
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "long-01.zip"
+    },
+    {
+      "id": "long-02",
+      "title": "ChatGPT Free vs Plus – What You Really Get (Honest Test)",
+      "type": "long",
+      "description": "Free vs paid decision checklist",
+      "release_at_ist": "2026-11-27 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b2424f8cf9288b91940c51bf9332a016b11e3f7d53c99d33815d65404ab7dad0",
+      "resources": [
+        {
+          "file": "Free-vs-Paid-Decision-Checklist.pdf",
+          "bytes": 112965
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51926
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 573
+        }
+      ],
+      "zip_name": "long-02.zip"
+    },
+    {
+      "id": "long-03",
+      "title": "ChatGPT Projects and Memory – Your Personal Work Assistant",
+      "type": "long",
+      "description": "Project instructions template",
+      "release_at_ist": "2026-12-07 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "676802159c085b9c13e0583d3f96394531b10711987c0f7a7d59470741898a08",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52134
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 596
+        },
+        {
+          "file": "Project-Instructions-Template.pdf",
+          "bytes": 131828
+        }
+      ],
+      "zip_name": "long-03.zip"
+    },
+    {
+      "id": "long-04",
+      "title": "ChatGPT for Excel – Charts and Reports from Your Data in 2 Minutes",
+      "type": "long",
+      "description": "Sample sales data file",
+      "release_at_ist": "2026-12-14 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c5099563fb80ba38b249c297452fd21b17479725342191003c4715a6571d8990",
+      "resources": [
+        {
+          "file": "Excel-Analysis-Prompts.pdf",
+          "bytes": 131473
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51489
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 579
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "long-04.zip"
+    },
+    {
+      "id": "long-05",
+      "title": "Build Your Own Custom GPT – No Coding, Step by Step",
+      "type": "long",
+      "description": "Custom GPT instruction template",
+      "release_at_ist": "2026-12-21 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3619ca73aa14c2eb39c0bd58df5c03e615d577097613d2a23d32b0f13a21f4b0",
+      "resources": [
+        {
+          "file": "Coaching-Centre-FAQ-Knowledge-File.pdf",
+          "bytes": 114566
+        },
+        {
+          "file": "Custom-GPT-Instruction-Template.pdf",
+          "bytes": 131585
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52283
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 656
+        },
+        {
+          "file": "Prompt-1-Custom-GPT-Setup.txt",
+          "bytes": 1653
+        }
+      ],
+      "zip_name": "long-05.zip"
+    },
+    {
+      "id": "long-06",
+      "title": "ChatGPT Image Creation – Posters, Product Photos and Thumbnails",
+      "type": "long",
+      "description": "10 business image prompts",
+      "release_at_ist": "2027-01-01 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "1be2dd81cc20638d6b0db330f5cb3ed0baabb54ca64cd5e0035acf9a108ad22e",
+      "resources": [
+        {
+          "file": "10-Business-Image-Prompts.pdf",
+          "bytes": 133647
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51975
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 573
+        },
+        {
+          "file": "Prompt-1-Sale-Poster.txt",
+          "bytes": 849
+        },
+        {
+          "file": "Prompt-2-Product-Photo.txt",
+          "bytes": 770
+        }
+      ],
+      "zip_name": "long-06.zip"
+    },
+    {
+      "id": "long-07",
+      "title": "Practise Spoken English with ChatGPT Voice – Free Daily Routine",
+      "type": "long",
+      "description": "30-day speaking routine",
+      "release_at_ist": "2027-01-24 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "2710e953ff6742fe35655b1667b75cf1ba0324ebcbe19d807946beb72bfb3bae",
+      "resources": [
+        {
+          "file": "30-Day-English-Speaking-Routine.pdf",
+          "bytes": 133746
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51933
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 592
+        }
+      ],
+      "zip_name": "long-07.zip"
+    },
+    {
+      "id": "long-08",
+      "title": "ChatGPT for Teachers – Lesson Plan, Worksheet and Question Paper in 10 Minutes",
+      "type": "long",
+      "description": "Teacher prompt builder (this page)",
+      "release_at_ist": "2026-11-20 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "5a4dba897f83d9569ce9aceba606c717745dc006efe74cf0a9c8e9fa6564f206",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 53154
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 704
+        },
+        {
+          "file": "Teacher-Prompt-Pack.pdf",
+          "bytes": 131731
+        }
+      ],
+      "zip_name": "long-08.zip"
+    },
+    {
+      "id": "long-09",
+      "title": "Upload a Chapter PDF – Get Notes, MCQs and Flashcards Instantly",
+      "type": "long",
+      "description": "Revision prompt pack",
+      "release_at_ist": "2026-12-04 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "338322fd4e110a9db07338e9ebc2f5dcc57ffdd5b88f5b1cf35b72cb93e968d6",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52147
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 669
+        },
+        {
+          "file": "Revision-Prompt-Pack.pdf",
+          "bytes": 131612
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        }
+      ],
+      "zip_name": "long-09.zip"
+    },
+    {
+      "id": "long-10",
+      "title": "NotebookLM Complete Guide – Google's Free AI for Notes, Audio and Mind Maps",
+      "type": "long",
+      "description": "NotebookLM study workflow",
+      "release_at_ist": "2026-11-30 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "12871bb93ea8fe293f8c24c45fe8b03df0e66d6c5366f35d015b1c93daff39e8",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51419
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 558
+        },
+        {
+          "file": "NotebookLM-Study-Workflow.pdf",
+          "bytes": 131603
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        },
+        {
+          "file": "Sample-Teacher-Notes-Photosynthesis.pdf",
+          "bytes": 112359
+        }
+      ],
+      "zip_name": "long-10.zip"
+    },
+    {
+      "id": "long-11",
+      "title": "Make a Smart Study Timetable with AI and Google Sheets",
+      "type": "long",
+      "description": "Study tracker sheet",
+      "release_at_ist": "2026-12-25 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3dcd9f0801e62c985900a366c034b30ed21c7a76ae930f25158394ddcb9fa340",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52147
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 696
+        },
+        {
+          "file": "Prompt-1-Study-Plan.txt",
+          "bytes": 838
+        },
+        {
+          "file": "Study-Tracker.xlsx",
+          "bytes": 23099
+        }
+      ],
+      "zip_name": "long-11.zip"
+    },
+    {
+      "id": "long-12",
+      "title": "ATS-Friendly Resume with ChatGPT and Canva – Get More Interview Calls",
+      "type": "long",
+      "description": "Resume prompt kit",
+      "release_at_ist": "2027-01-04 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "6fe2269152b20c4132e6e1f3c40e358fdde4d3adb31ea32c9071459496732cc2",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52085
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 708
+        },
+        {
+          "file": "Prompt-1-Tailor-Resume.txt",
+          "bytes": 734
+        },
+        {
+          "file": "Resume-Prompt-Kit.pdf",
+          "bytes": 131532
+        },
+        {
+          "file": "Sample-Job-Description.txt",
+          "bytes": 815
+        },
+        {
+          "file": "Sample-Resume-Before.txt",
+          "bytes": 502
+        }
+      ],
+      "zip_name": "long-12.zip"
+    },
+    {
+      "id": "long-13",
+      "title": "Google Gemini Complete Tutorial – Free AI Inside Your Google Account",
+      "type": "long",
+      "description": "Gemini prompt sheet",
+      "release_at_ist": "2026-11-23 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "88e6110d979d4995ac81d1772475197ff3c3f3bf37a53ad0dcc52df30e89bbe8",
+      "resources": [
+        {
+          "file": "Gemini-Prompt-Sheet.pdf",
+          "bytes": 131472
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51305
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 520
+        }
+      ],
+      "zip_name": "long-13.zip"
+    },
+    {
+      "id": "long-14",
+      "title": "Gemini in Gmail, Docs and Sheets – Finish Office Work Faster",
+      "type": "long",
+      "description": "Office prompt sheet",
+      "release_at_ist": "2026-12-28 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "62da35802e8a237923fe1f9fc6122197ee71e68dfb5480603eef6ee359dbd599",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52037
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 505
+        },
+        {
+          "file": "Office-Prompt-Sheet.pdf",
+          "bytes": 131441
+        },
+        {
+          "file": "Sample-Email-Thread.txt",
+          "bytes": 1015
+        }
+      ],
+      "zip_name": "long-14.zip"
+    },
+    {
+      "id": "long-15",
+      "title": "Google Forms Quiz with Auto Grading – Complete Guide for Teachers",
+      "type": "long",
+      "description": "Quiz question template",
+      "release_at_ist": "2026-12-11 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "a07fd280f4bfabf2ec3de8146bcae1b376e2774032ea1197a14c2a89053acd06",
+      "resources": [
+        {
+          "file": "Google-Forms-Quiz-Steps.pdf",
+          "bytes": 131540
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51920
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 517
+        },
+        {
+          "file": "Quiz-Questions-Linear-Equations.xlsx",
+          "bytes": 22605
+        }
+      ],
+      "zip_name": "long-15.zip"
+    },
+    {
+      "id": "long-16",
+      "title": "Google Sheets Attendance Tracker with Checkboxes and Auto %",
+      "type": "long",
+      "description": "Attendance template (Google Sheets)",
+      "release_at_ist": "2026-12-18 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "9c3369d826ea09c14b4f5926d6386e7b6553d357506d4497749dd6d6b599c754",
+      "resources": [
+        {
+          "file": "Attendance-Tracker-Nov-2026.xlsx",
+          "bytes": 24408
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51902
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 595
+        },
+        {
+          "file": "Prompt-1-Attendance-Formulas.txt",
+          "bytes": 691
+        }
+      ],
+      "zip_name": "long-16.zip"
+    },
+    {
+      "id": "long-17",
+      "title": "Organise Google Drive Like a Pro – Folders, Sharing and Free Space",
+      "type": "long",
+      "description": "Drive folder system",
+      "release_at_ist": "2027-01-22 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "25bb1a38148ceb3fc9e8b111bc0eec6d7fe62a14e8a7adcfa231f6c66952f54a",
+      "resources": [
+        {
+          "file": "Drive-Folder-System.pdf",
+          "bytes": 131752
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51740
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 622
+        }
+      ],
+      "zip_name": "long-17.zip"
+    },
+    {
+      "id": "long-18",
+      "title": "Claude AI Complete Tutorial – Better Writing and Long Documents",
+      "type": "long",
+      "description": "Claude prompt sheet",
+      "release_at_ist": "2027-01-08 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b486f300a34063b6c6943100ddb2f8d2ad9ba8f636ae20890f3d754d4884fd56",
+      "resources": [
+        {
+          "file": "Claude-Prompt-Sheet.pdf",
+          "bytes": 131441
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51308
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 547
+        },
+        {
+          "file": "Prompt-1-Travel-Allowance-Tool.txt",
+          "bytes": 1949
+        },
+        {
+          "file": "Sample-Long-Policy-Document.pdf",
+          "bytes": 118712
+        }
+      ],
+      "zip_name": "long-18.zip"
+    },
+    {
+      "id": "long-19",
+      "title": "Build Your Own Calculator or Mini App with Claude – No Coding",
+      "type": "long",
+      "description": "Mini tool prompt builder",
+      "release_at_ist": "2027-01-11 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "8802861abe9ef004695f1ca175cb8cbabe278f85797291aa5cdbcdec4168bf01",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52003
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 630
+        },
+        {
+          "file": "Mini-Tool-Prompt-Builder.pdf",
+          "bytes": 131545
+        },
+        {
+          "file": "Prompt-1-Interior-Quote-Calculator.txt",
+          "bytes": 2079
+        },
+        {
+          "file": "Prompt-2-Quiz-Page.txt",
+          "bytes": 1883
+        },
+        {
+          "file": "Quiz-Questions-Linear-Equations.xlsx",
+          "bytes": 22605
+        }
+      ],
+      "zip_name": "long-19.zip"
+    },
+    {
+      "id": "long-20",
+      "title": "ChatGPT vs Gemini vs Claude – I Tested All 3 on Real Work",
+      "type": "long",
+      "description": "AI comparison score sheet",
+      "release_at_ist": "2027-01-15 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "d52b97f8ec7db1bcd7f0fefae4889dab0d28235c14b220f5976f78b27e85dee2",
+      "resources": [
+        {
+          "file": "AI-Comparison-Score-Sheet.xlsx",
+          "bytes": 22801
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51446
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 471
+        },
+        {
+          "file": "Prompt-1-Same-Test-For-All-3-AIs.txt",
+          "bytes": 1375
+        },
+        {
+          "file": "Sample-Long-Policy-Document.pdf",
+          "bytes": 118712
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "long-20.zip"
+    },
+    {
+      "id": "long-21",
+      "title": "Perplexity AI – Research Anything with Sources in Minutes",
+      "type": "long",
+      "description": "Research prompt pack",
+      "release_at_ist": "2027-01-18 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "5695f2fac9385fa79604dea2f688e790ee468e9681e7e974eb0b559d905d4b03",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51675
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 535
+        },
+        {
+          "file": "Research-Prompt-Pack.pdf",
+          "bytes": 131540
+        }
+      ],
+      "zip_name": "long-21.zip"
+    },
+    {
+      "id": "long-22",
+      "title": "Make a Presentation in 10 Minutes with AI and Canva",
+      "type": "long",
+      "description": "Slide outline prompt",
+      "release_at_ist": "2026-12-20 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "2e0aba86e09ea1674e803d8f1828cb9357153ea450a8c0e250720843f99dca4c",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51830
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 633
+        },
+        {
+          "file": "Prompt-1-Deck-Outline.txt",
+          "bytes": 747
+        },
+        {
+          "file": "Slide-Outline-Prompt.pdf",
+          "bytes": 131188
+        }
+      ],
+      "zip_name": "long-22.zip"
+    },
+    {
+      "id": "long-23",
+      "title": "Canva Magic Studio – Every AI Tool Explained with Examples",
+      "type": "long",
+      "description": "Canva practice file",
+      "release_at_ist": "2026-12-13 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e8d539f6c2b2b2432e26ffbab956692b2e636b0518c4437b37634e551929f632",
+      "resources": [
+        {
+          "file": "Canva-Magic-Studio-Practice.pdf",
+          "bytes": 131454
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51564
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 608
+        },
+        {
+          "file": "Practice-Product-Photo.png",
+          "bytes": 7384
+        },
+        {
+          "file": "Prompt-1-Magic-Media-Images.txt",
+          "bytes": 699
+        }
+      ],
+      "zip_name": "long-23.zip"
+    },
+    {
+      "id": "long-24",
+      "title": "Create a Brand Kit for Your Small Business in Canva – Logo, Colours, Fonts",
+      "type": "long",
+      "description": "Brand idea prompt",
+      "release_at_ist": "2026-12-27 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "973371079b5962eccc3a795b971b64d7391466e4bc0b1be8ee0d5a33b2ca6154",
+      "resources": [
+        {
+          "file": "Brand-Kit-Worksheet.pdf",
+          "bytes": 131430
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51900
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 607
+        },
+        {
+          "file": "Prompt-1-Logo-Ideas.txt",
+          "bytes": 754
+        }
+      ],
+      "zip_name": "long-24.zip"
+    },
+    {
+      "id": "long-25",
+      "title": "Make 50 Posts in 5 Minutes – Canva Bulk Create with Google Sheets",
+      "type": "long",
+      "description": "Bulk create sample sheet",
+      "release_at_ist": "2027-01-03 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "0d5d732a9d214f0ac3cb5851b721bbf9484c2159198c52e028c3ca17405e2aa5",
+      "resources": [
+        {
+          "file": "Bulk-Create-Sample-Data.xlsx",
+          "bytes": 40652
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51282
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 550
+        },
+        {
+          "file": "Prompt-1-Make-Bulk-Data.txt",
+          "bytes": 669
+        }
+      ],
+      "zip_name": "long-25.zip"
+    },
+    {
+      "id": "long-26",
+      "title": "Canva Resume in 10 Minutes – Clean, Simple and ATS-Friendly",
+      "type": "long",
+      "description": "Resume template checklist",
+      "release_at_ist": "2027-01-06 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c8ff2aca46a87fb539b75623a5dc9509b6450e0c3989ab51e83c561e2262942a",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51701
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 591
+        },
+        {
+          "file": "Resume-Template-Checklist.pdf",
+          "bytes": 131488
+        }
+      ],
+      "zip_name": "long-26.zip"
+    },
+    {
+      "id": "long-27",
+      "title": "YouTube Thumbnails in Canva That Get Clicks – Before and After",
+      "type": "long",
+      "description": "Thumbnail checklist",
+      "release_at_ist": "2027-01-17 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c7fd567e3f28ceafc391a187427ad1e170dbf2871d372e444b7e5d05e86b69c1",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51738
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 555
+        },
+        {
+          "file": "Prompt-1-Thumbnail-Background.txt",
+          "bytes": 693
+        },
+        {
+          "file": "Thumbnail-Checklist.pdf",
+          "bytes": 131521
+        }
+      ],
+      "zip_name": "long-27.zip"
+    },
+    {
+      "id": "long-28",
+      "title": "Salary Sheet in Excel with PF, ESI and Attendance – New Labour Code Rules",
+      "type": "long",
+      "description": "Salary sheet Excel template",
+      "release_at_ist": "2026-11-18 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b8d4ef7a8c751581ca916035ec3fbd86893b109a85fb1b9233b5be2d5cf30ee5",
+      "resources": [
+        {
+          "file": "Labour-Code-Salary-Notes.pdf",
+          "bytes": 113128
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 53352
+        },
+        {
+          "file": "Prompt-1-Salary-Slip-Generator.txt",
+          "bytes": 2360
+        },
+        {
+          "file": "Salary-Sheet-Template.xlsx",
+          "bytes": 23556
+        }
+      ],
+      "zip_name": "long-28.zip"
+    },
+    {
+      "id": "long-29",
+      "title": "GST Invoice in Excel – Automatic Total, CGST, SGST and IGST",
+      "type": "long",
+      "description": "GST invoice template",
+      "release_at_ist": "2026-11-22 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "ec7ac16d5cc41bfb65768ad810cc224635c491788de9d6a2cec3c3bcb4080484",
+      "resources": [
+        {
+          "file": "GST-Invoice-Template.xlsx",
+          "bytes": 23423
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52033
+        },
+        {
+          "file": "Prompt-1-GST-Invoice-Generator.txt",
+          "bytes": 2065
+        }
+      ],
+      "zip_name": "long-29.zip"
+    },
+    {
+      "id": "long-30",
+      "title": "EMI Calculator in Excel – See How Prepayment Saves Lakhs",
+      "type": "long",
+      "description": "EMI schedule template",
+      "release_at_ist": "2026-12-06 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "17e3e2ee55df8dad7996a6fae5d054deb0df683a26d7ed4ae52b5f6928cb5a27",
+      "resources": [
+        {
+          "file": "EMI-Calculator-and-Schedule.xlsx",
+          "bytes": 47879
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52054
+        },
+        {
+          "file": "Prompt-1-EMI-Calculator.txt",
+          "bytes": 2064
+        }
+      ],
+      "zip_name": "long-30.zip"
+    },
+    {
+      "id": "long-31",
+      "title": "Monthly Budget in Excel or Google Sheets – 50-30-20 Rule Made Easy",
+      "type": "long",
+      "description": "Monthly budget template",
+      "release_at_ist": "2026-12-02 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "25114be5bbf7edc8cf16e4006485b41074efc61534efb1e5cd6fa3744db432e5",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51845
+        },
+        {
+          "file": "Monthly-Budget-Template.xlsx",
+          "bytes": 23073
+        },
+        {
+          "file": "Prompt-1-Budget-Planner.txt",
+          "bytes": 1964
+        }
+      ],
+      "zip_name": "long-31.zip"
+    },
+    {
+      "id": "long-32",
+      "title": "XLOOKUP in Excel – Find Any Data in Seconds (Better than VLOOKUP)",
+      "type": "long",
+      "description": "XLOOKUP practice file",
+      "release_at_ist": "2026-11-29 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "003e47f8659714367c7ac530fa535bbfd5df4004e98340b3c732b520dee0c8ab",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52271
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 534
+        },
+        {
+          "file": "Prompt-1-XLOOKUP-Help.txt",
+          "bytes": 756
+        },
+        {
+          "file": "XLOOKUP-Practice-File.xlsx",
+          "bytes": 58549
+        }
+      ],
+      "zip_name": "long-32.zip"
+    },
+    {
+      "id": "long-33",
+      "title": "Pivot Table in Excel in 5 Minutes – Summarise Thousands of Rows",
+      "type": "long",
+      "description": "Sample sales data",
+      "release_at_ist": "2026-12-09 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "8429ef67da0cc791d009aa9c6dba0f20f8eb075d98119fd586addd16bf08f07a",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51332
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 559
+        },
+        {
+          "file": "Prompt-1-Which-Pivots.txt",
+          "bytes": 608
+        },
+        {
+          "file": "Sales-Data-2400-Rows.xlsx",
+          "bytes": 121424
+        }
+      ],
+      "zip_name": "long-33.zip"
+    },
+    {
+      "id": "long-34",
+      "title": "Excel Formulas with ChatGPT – Never Google a Formula Again",
+      "type": "long",
+      "description": "Formula prompt builder",
+      "release_at_ist": "2026-12-16 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "beed89cccef0ec06a28fa75386397fd0a3e819f5d9e80e92f7cec1f9876f265d",
+      "resources": [
+        {
+          "file": "Formula-Practice-Data.xlsx",
+          "bytes": 41168
+        },
+        {
+          "file": "Formula-Prompt-Builder.pdf",
+          "bytes": 131219
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51974
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 587
+        }
+      ],
+      "zip_name": "long-34.zip"
+    },
+    {
+      "id": "long-35",
+      "title": "Clean Messy Data in Excel – Duplicates, Spaces, Names and Dates",
+      "type": "long",
+      "description": "Messy data practice file",
+      "release_at_ist": "2026-12-23 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3641aa79b3d0febc3fd3f4a6701f271c3d8c798994d33fe9b26afee9fdc1c31d",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51337
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 592
+        },
+        {
+          "file": "Messy-Data-Practice.xlsx",
+          "bytes": 40632
+        },
+        {
+          "file": "Prompt-1-Cleanup-Plan.txt",
+          "bytes": 733
+        }
+      ],
+      "zip_name": "long-35.zip"
+    },
+    {
+      "id": "long-36",
+      "title": "Sales Dashboard in Google Sheets – Charts That Update Automatically",
+      "type": "long",
+      "description": "Sales dashboard template",
+      "release_at_ist": "2026-12-30 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "8063be4fd73ea1b65c1d99c5841127386311331ea7b9545807fba99fa3f21be5",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51783
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 557
+        },
+        {
+          "file": "Prompt-1-Dashboard-KPIs.txt",
+          "bytes": 650
+        },
+        {
+          "file": "Prompt-2-HTML-Dashboard-Tool.txt",
+          "bytes": 1875
+        },
+        {
+          "file": "Sales-Dashboard-Template.xlsx",
+          "bytes": 61582
+        }
+      ],
+      "zip_name": "long-36.zip"
+    },
+    {
+      "id": "long-37",
+      "title": "AI for Shopkeepers – Offer Messages, Posters and Stock Register for Free",
+      "type": "long",
+      "description": "Offer maker + stock register",
+      "release_at_ist": "2026-11-25 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3957a9d028eecd0e52108d5b1f2b87ad8f3d43fe4b6bb72ca1b8a1cd48b34c9e",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 54022
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 598
+        },
+        {
+          "file": "Offer-Message-Templates.pdf",
+          "bytes": 132790
+        },
+        {
+          "file": "Prompt-1-Shop-Poster.txt",
+          "bytes": 768
+        },
+        {
+          "file": "Prompt-2-Offer-Message-Maker-Tool.txt",
+          "bytes": 1864
+        },
+        {
+          "file": "Stock-Register.xlsx",
+          "bytes": 23150
+        }
+      ],
+      "zip_name": "long-37.zip"
+    },
+    {
+      "id": "long-38",
+      "title": "WhatsApp Business + AI – Quick Replies, Catalogue and Greeting Messages",
+      "type": "long",
+      "description": "20 ready quick replies",
+      "release_at_ist": "2027-01-20 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "fcdf14ee746dd932bc89ab070ec758593e59d805fbeee2670a8bfb7a7d9d61ab",
+      "resources": [
+        {
+          "file": "20-Quick-Replies.pdf",
+          "bytes": 134270
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51925
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 671
+        }
+      ],
+      "zip_name": "long-38.zip"
+    },
+    {
+      "id": "long-39",
+      "title": "30-Day Instagram Content Calendar with AI and Google Sheets",
+      "type": "long",
+      "description": "Content calendar template",
+      "release_at_ist": "2027-01-10 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b36481463df0af3a072caf6b1ba323440497c37e95f21c1a4a3d72a0bf4f64cd",
+      "resources": [
+        {
+          "file": "Content-Calendar-Nov-Dec-2026.xlsx",
+          "bytes": 25112
+        },
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 51834
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 644
+        },
+        {
+          "file": "Prompt-1-30-Day-Calendar.txt",
+          "bytes": 740
+        }
+      ],
+      "zip_name": "long-39.zip"
+    },
+    {
+      "id": "long-40",
+      "title": "Dropdowns and Conditional Formatting in Excel and Sheets – Error-Free Data",
+      "type": "long",
+      "description": "Order tracker practice file",
+      "release_at_ist": "2027-01-13 19:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "5d412d0c6f3674a1e567c953c5d047c5a0079f351451bd334662699b2e763db6",
+      "resources": [
+        {
+          "file": "Lesson-Slides.html",
+          "bytes": 52238
+        },
+        {
+          "file": "Live-Demo-Prompt.txt",
+          "bytes": 630
+        },
+        {
+          "file": "Order-Tracker-Practice.xlsx",
+          "bytes": 23228
+        },
+        {
+          "file": "Prompt-1-Tracker-Design.txt",
+          "bytes": 686
+        }
+      ],
+      "zip_name": "long-40.zip"
+    },
+    {
+      "id": "short-s01",
+      "title": "Weak prompt vs strong prompt in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-17 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c509323fb770fe316b48403928445c6317ba5f853c161855c662dff4053a1e3c",
+      "resources": [
+        {
+          "file": "20-Everyday-ChatGPT-Tasks.pdf",
+          "bytes": 136331
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "short-s01.zip"
+    },
+    {
+      "id": "short-s02",
+      "title": "Rewrite any email to sound professional in 10 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c509323fb770fe316b48403928445c6317ba5f853c161855c662dff4053a1e3c",
+      "resources": [
+        {
+          "file": "20-Everyday-ChatGPT-Tasks.pdf",
+          "bytes": 136331
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "short-s02.zip"
+    },
+    {
+      "id": "short-s03",
+      "title": "The 50% wage rule in 40 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-19 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "7525a15cdc0c15b2ef3c85d5e306a0c6fd74e0d2351f5d688e54fb942a14b955",
+      "resources": [
+        {
+          "file": "Labour-Code-Salary-Notes.pdf",
+          "bytes": 113128
+        },
+        {
+          "file": "Salary-Sheet-Template.xlsx",
+          "bytes": 23556
+        }
+      ],
+      "zip_name": "short-s03.zip"
+    },
+    {
+      "id": "short-s04",
+      "title": "Salary by attendance formula",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-19 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "7525a15cdc0c15b2ef3c85d5e306a0c6fd74e0d2351f5d688e54fb942a14b955",
+      "resources": [
+        {
+          "file": "Labour-Code-Salary-Notes.pdf",
+          "bytes": 113128
+        },
+        {
+          "file": "Salary-Sheet-Template.xlsx",
+          "bytes": 23556
+        }
+      ],
+      "zip_name": "short-s04.zip"
+    },
+    {
+      "id": "short-s05",
+      "title": "PF calculation in Excel",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-19 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "7525a15cdc0c15b2ef3c85d5e306a0c6fd74e0d2351f5d688e54fb942a14b955",
+      "resources": [
+        {
+          "file": "Labour-Code-Salary-Notes.pdf",
+          "bytes": 113128
+        },
+        {
+          "file": "Salary-Sheet-Template.xlsx",
+          "bytes": 23556
+        }
+      ],
+      "zip_name": "short-s05.zip"
+    },
+    {
+      "id": "short-s06",
+      "title": "Question paper blueprint in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-21 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "58f937881f5e86dbb8e27d6c58f4faa9a9d9e7dff94d05dbfa4db23d0b82b580",
+      "resources": [
+        {
+          "file": "Teacher-Prompt-Pack.pdf",
+          "bytes": 131731
+        }
+      ],
+      "zip_name": "short-s06.zip"
+    },
+    {
+      "id": "short-s07",
+      "title": "Remedial plan for weak students with AI",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-21 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "58f937881f5e86dbb8e27d6c58f4faa9a9d9e7dff94d05dbfa4db23d0b82b580",
+      "resources": [
+        {
+          "file": "Teacher-Prompt-Pack.pdf",
+          "bytes": 131731
+        }
+      ],
+      "zip_name": "short-s07.zip"
+    },
+    {
+      "id": "short-s08",
+      "title": "Check AI answers in 3 steps",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-21 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "58f937881f5e86dbb8e27d6c58f4faa9a9d9e7dff94d05dbfa4db23d0b82b580",
+      "resources": [
+        {
+          "file": "Teacher-Prompt-Pack.pdf",
+          "bytes": 131731
+        }
+      ],
+      "zip_name": "short-s08.zip"
+    },
+    {
+      "id": "short-s09",
+      "title": "CGST vs SGST vs IGST in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-23 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "60cb7069b3deced75a7456a4a9c2af94133bb9f51aeda268246bf449204c1667",
+      "resources": [
+        {
+          "file": "GST-Invoice-Template.xlsx",
+          "bytes": 23423
+        }
+      ],
+      "zip_name": "short-s09.zip"
+    },
+    {
+      "id": "short-s10",
+      "title": "Total in words in Excel",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-23 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "60cb7069b3deced75a7456a4a9c2af94133bb9f51aeda268246bf449204c1667",
+      "resources": [
+        {
+          "file": "GST-Invoice-Template.xlsx",
+          "bytes": 23423
+        }
+      ],
+      "zip_name": "short-s10.zip"
+    },
+    {
+      "id": "short-s11",
+      "title": "GST % dropdown",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-23 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "60cb7069b3deced75a7456a4a9c2af94133bb9f51aeda268246bf449204c1667",
+      "resources": [
+        {
+          "file": "GST-Invoice-Template.xlsx",
+          "bytes": 23423
+        }
+      ],
+      "zip_name": "short-s11.zip"
+    },
+    {
+      "id": "short-s12",
+      "title": "Summarise any YouTube video with Gemini",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-24 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "a44130ddb3ae861a284bb881cea2a9b982eafe807166b5fbca013ea1010432d2",
+      "resources": [
+        {
+          "file": "Gemini-Prompt-Sheet.pdf",
+          "bytes": 131472
+        }
+      ],
+      "zip_name": "short-s12.zip"
+    },
+    {
+      "id": "short-s13",
+      "title": "Free AI already on your phone",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-24 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "a44130ddb3ae861a284bb881cea2a9b982eafe807166b5fbca013ea1010432d2",
+      "resources": [
+        {
+          "file": "Gemini-Prompt-Sheet.pdf",
+          "bytes": 131472
+        }
+      ],
+      "zip_name": "short-s13.zip"
+    },
+    {
+      "id": "short-s14",
+      "title": "Offer message in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-26 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "f4db83ca3563e8eb14957fb284d7702ef94e58f73e593b282d4fcc4d828c09f5",
+      "resources": [
+        {
+          "file": "Offer-Message-Templates.pdf",
+          "bytes": 132790
+        },
+        {
+          "file": "Stock-Register.xlsx",
+          "bytes": 23150
+        }
+      ],
+      "zip_name": "short-s14.zip"
+    },
+    {
+      "id": "short-s15",
+      "title": "Stock register that says Reorder",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-26 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "f4db83ca3563e8eb14957fb284d7702ef94e58f73e593b282d4fcc4d828c09f5",
+      "resources": [
+        {
+          "file": "Offer-Message-Templates.pdf",
+          "bytes": 132790
+        },
+        {
+          "file": "Stock-Register.xlsx",
+          "bytes": 23150
+        }
+      ],
+      "zip_name": "short-s15.zip"
+    },
+    {
+      "id": "short-s16",
+      "title": "Poster text with AI",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-26 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "f4db83ca3563e8eb14957fb284d7702ef94e58f73e593b282d4fcc4d828c09f5",
+      "resources": [
+        {
+          "file": "Offer-Message-Templates.pdf",
+          "bytes": 132790
+        },
+        {
+          "file": "Stock-Register.xlsx",
+          "bytes": 23150
+        }
+      ],
+      "zip_name": "short-s16.zip"
+    },
+    {
+      "id": "short-s17",
+      "title": "Is ChatGPT free unlimited The truth",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-28 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "79ca5af7f010da0592897f38a6c45a6a7c486116b5ac9756725808e551bcf308",
+      "resources": [
+        {
+          "file": "Free-vs-Paid-Decision-Checklist.pdf",
+          "bytes": 112965
+        }
+      ],
+      "zip_name": "short-s17.zip"
+    },
+    {
+      "id": "short-s18",
+      "title": "3 signs a free Plus offer is a scam",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-28 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "79ca5af7f010da0592897f38a6c45a6a7c486116b5ac9756725808e551bcf308",
+      "resources": [
+        {
+          "file": "Free-vs-Paid-Decision-Checklist.pdf",
+          "bytes": 112965
+        }
+      ],
+      "zip_name": "short-s18.zip"
+    },
+    {
+      "id": "short-s19",
+      "title": "Use free limits smartly",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-28 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "79ca5af7f010da0592897f38a6c45a6a7c486116b5ac9756725808e551bcf308",
+      "resources": [
+        {
+          "file": "Free-vs-Paid-Decision-Checklist.pdf",
+          "bytes": 112965
+        }
+      ],
+      "zip_name": "short-s19.zip"
+    },
+    {
+      "id": "short-s20",
+      "title": "XLOOKUP vs VLOOKUP",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-30 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "7a7b19cc0efbc648f28cfb8bdfcbbb39df116678bb1102736590e1c5c121dd4c",
+      "resources": [
+        {
+          "file": "XLOOKUP-Practice-File.xlsx",
+          "bytes": 58549
+        }
+      ],
+      "zip_name": "short-s20.zip"
+    },
+    {
+      "id": "short-s21",
+      "title": "Fix #NA in 10 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-30 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "7a7b19cc0efbc648f28cfb8bdfcbbb39df116678bb1102736590e1c5c121dd4c",
+      "resources": [
+        {
+          "file": "XLOOKUP-Practice-File.xlsx",
+          "bytes": 58549
+        }
+      ],
+      "zip_name": "short-s21.zip"
+    },
+    {
+      "id": "short-s22",
+      "title": "Look up to the left",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-11-30 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "7a7b19cc0efbc648f28cfb8bdfcbbb39df116678bb1102736590e1c5c121dd4c",
+      "resources": [
+        {
+          "file": "XLOOKUP-Practice-File.xlsx",
+          "bytes": 58549
+        }
+      ],
+      "zip_name": "short-s22.zip"
+    },
+    {
+      "id": "short-s23",
+      "title": "Turn a PDF into a podcast with NotebookLM",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-01 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c66bafeff94b21d6a7a3b4398ed134dc0a6b139bd0afea0f3e1389149675c321",
+      "resources": [
+        {
+          "file": "NotebookLM-Study-Workflow.pdf",
+          "bytes": 131603
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        },
+        {
+          "file": "Sample-Teacher-Notes-Photosynthesis.pdf",
+          "bytes": 112359
+        }
+      ],
+      "zip_name": "short-s23.zip"
+    },
+    {
+      "id": "short-s24",
+      "title": "Mind map from notes in 1 click",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-01 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c66bafeff94b21d6a7a3b4398ed134dc0a6b139bd0afea0f3e1389149675c321",
+      "resources": [
+        {
+          "file": "NotebookLM-Study-Workflow.pdf",
+          "bytes": 131603
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        },
+        {
+          "file": "Sample-Teacher-Notes-Photosynthesis.pdf",
+          "bytes": 112359
+        }
+      ],
+      "zip_name": "short-s24.zip"
+    },
+    {
+      "id": "short-s25",
+      "title": "AI that cites its sources",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-01 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "c66bafeff94b21d6a7a3b4398ed134dc0a6b139bd0afea0f3e1389149675c321",
+      "resources": [
+        {
+          "file": "NotebookLM-Study-Workflow.pdf",
+          "bytes": 131603
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        },
+        {
+          "file": "Sample-Teacher-Notes-Photosynthesis.pdf",
+          "bytes": 112359
+        }
+      ],
+      "zip_name": "short-s25.zip"
+    },
+    {
+      "id": "short-s26",
+      "title": "503020 in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-03 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "fe63975b056615bcc05bf3cbfe4982ac53e2eabcd515375842e221dcbda73ee6",
+      "resources": [
+        {
+          "file": "Monthly-Budget-Template.xlsx",
+          "bytes": 23073
+        }
+      ],
+      "zip_name": "short-s26.zip"
+    },
+    {
+      "id": "short-s27",
+      "title": "Planned vs actual formula",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-03 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "fe63975b056615bcc05bf3cbfe4982ac53e2eabcd515375842e221dcbda73ee6",
+      "resources": [
+        {
+          "file": "Monthly-Budget-Template.xlsx",
+          "bytes": 23073
+        }
+      ],
+      "zip_name": "short-s27.zip"
+    },
+    {
+      "id": "short-s28",
+      "title": "Budget mistake most people make",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-03 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "fe63975b056615bcc05bf3cbfe4982ac53e2eabcd515375842e221dcbda73ee6",
+      "resources": [
+        {
+          "file": "Monthly-Budget-Template.xlsx",
+          "bytes": 23073
+        }
+      ],
+      "zip_name": "short-s28.zip"
+    },
+    {
+      "id": "short-s29",
+      "title": "Flashcards from a PDF in 20 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-05 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e913ad8a71d0912d20366955d4a501cb9f00f5a0c1f09b4cf95ba2a66ce34bb2",
+      "resources": [
+        {
+          "file": "Revision-Prompt-Pack.pdf",
+          "bytes": 131612
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        }
+      ],
+      "zip_name": "short-s29.zip"
+    },
+    {
+      "id": "short-s30",
+      "title": "The one prompt for exam notes",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-05 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e913ad8a71d0912d20366955d4a501cb9f00f5a0c1f09b4cf95ba2a66ce34bb2",
+      "resources": [
+        {
+          "file": "Revision-Prompt-Pack.pdf",
+          "bytes": 131612
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        }
+      ],
+      "zip_name": "short-s30.zip"
+    },
+    {
+      "id": "short-s31",
+      "title": "Turn notes into MCQs",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-05 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e913ad8a71d0912d20366955d4a501cb9f00f5a0c1f09b4cf95ba2a66ce34bb2",
+      "resources": [
+        {
+          "file": "Revision-Prompt-Pack.pdf",
+          "bytes": 131612
+        },
+        {
+          "file": "Sample-Chapter-Nutrition-in-Plants.pdf",
+          "bytes": 115046
+        }
+      ],
+      "zip_name": "short-s31.zip"
+    },
+    {
+      "id": "short-s32",
+      "title": "PMT formula in 20 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-07 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3e71ef4c59b7af9213834cd9668ec6c3733b49143de5c0f5ca8fff77545b1cbd",
+      "resources": [
+        {
+          "file": "EMI-Calculator-and-Schedule.xlsx",
+          "bytes": 47879
+        }
+      ],
+      "zip_name": "short-s32.zip"
+    },
+    {
+      "id": "short-s33",
+      "title": "Prepayment vs no prepayment",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-07 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3e71ef4c59b7af9213834cd9668ec6c3733b49143de5c0f5ca8fff77545b1cbd",
+      "resources": [
+        {
+          "file": "EMI-Calculator-and-Schedule.xlsx",
+          "bytes": 47879
+        }
+      ],
+      "zip_name": "short-s33.zip"
+    },
+    {
+      "id": "short-s34",
+      "title": "Total interest shock",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-07 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "3e71ef4c59b7af9213834cd9668ec6c3733b49143de5c0f5ca8fff77545b1cbd",
+      "resources": [
+        {
+          "file": "EMI-Calculator-and-Schedule.xlsx",
+          "bytes": 47879
+        }
+      ],
+      "zip_name": "short-s34.zip"
+    },
+    {
+      "id": "short-s35",
+      "title": "One setting that makes ChatGPT remember you",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-08 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b822f56d80252cf110acd674ecc91f5bf7d507f979f153eb978b0c2b60662a36",
+      "resources": [
+        {
+          "file": "Project-Instructions-Template.pdf",
+          "bytes": 131828
+        }
+      ],
+      "zip_name": "short-s35.zip"
+    },
+    {
+      "id": "short-s36",
+      "title": "Projects in 40 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-08 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b822f56d80252cf110acd674ecc91f5bf7d507f979f153eb978b0c2b60662a36",
+      "resources": [
+        {
+          "file": "Project-Instructions-Template.pdf",
+          "bytes": 131828
+        }
+      ],
+      "zip_name": "short-s36.zip"
+    },
+    {
+      "id": "short-s37",
+      "title": "How to see what ChatGPT remembers",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-08 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "b822f56d80252cf110acd674ecc91f5bf7d507f979f153eb978b0c2b60662a36",
+      "resources": [
+        {
+          "file": "Project-Instructions-Template.pdf",
+          "bytes": 131828
+        }
+      ],
+      "zip_name": "short-s37.zip"
+    },
+    {
+      "id": "short-s38",
+      "title": "Pivot table in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-10 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "da003f4f504c455321af7231085f684893a1a84bbca1a6b0b392d72d63f98e79",
+      "resources": [
+        {
+          "file": "Sales-Data-2400-Rows.xlsx",
+          "bytes": 121424
+        }
+      ],
+      "zip_name": "short-s38.zip"
+    },
+    {
+      "id": "short-s39",
+      "title": "Group dates by month",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-10 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "da003f4f504c455321af7231085f684893a1a84bbca1a6b0b392d72d63f98e79",
+      "resources": [
+        {
+          "file": "Sales-Data-2400-Rows.xlsx",
+          "bytes": 121424
+        }
+      ],
+      "zip_name": "short-s39.zip"
+    },
+    {
+      "id": "short-s40",
+      "title": "Add a slicer",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-10 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "da003f4f504c455321af7231085f684893a1a84bbca1a6b0b392d72d63f98e79",
+      "resources": [
+        {
+          "file": "Sales-Data-2400-Rows.xlsx",
+          "bytes": 121424
+        }
+      ],
+      "zip_name": "short-s40.zip"
+    },
+    {
+      "id": "short-s41",
+      "title": "Turn on quiz mode in Google Forms",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-12 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "ded878ef46b58ec85dd9874488b59f228c8ddab975c89ae200fe92e39066ca70",
+      "resources": [
+        {
+          "file": "Google-Forms-Quiz-Steps.pdf",
+          "bytes": 131540
+        },
+        {
+          "file": "Quiz-Questions-Linear-Equations.xlsx",
+          "bytes": 22605
+        }
+      ],
+      "zip_name": "short-s41.zip"
+    },
+    {
+      "id": "short-s42",
+      "title": "AI writes your quiz questions",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-12 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "ded878ef46b58ec85dd9874488b59f228c8ddab975c89ae200fe92e39066ca70",
+      "resources": [
+        {
+          "file": "Google-Forms-Quiz-Steps.pdf",
+          "bytes": 131540
+        },
+        {
+          "file": "Quiz-Questions-Linear-Equations.xlsx",
+          "bytes": 22605
+        }
+      ],
+      "zip_name": "short-s42.zip"
+    },
+    {
+      "id": "short-s43",
+      "title": "See results in Sheets instantly",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-12 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "ded878ef46b58ec85dd9874488b59f228c8ddab975c89ae200fe92e39066ca70",
+      "resources": [
+        {
+          "file": "Google-Forms-Quiz-Steps.pdf",
+          "bytes": 131540
+        },
+        {
+          "file": "Quiz-Questions-Linear-Equations.xlsx",
+          "bytes": 22605
+        }
+      ],
+      "zip_name": "short-s43.zip"
+    },
+    {
+      "id": "short-s44",
+      "title": "One question that summarises any Excel file",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-15 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e7ab139eee0b31d00de8e27fd8d589efd08308f3da42bf2e68d779341ed35e18",
+      "resources": [
+        {
+          "file": "Excel-Analysis-Prompts.pdf",
+          "bytes": 131473
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "short-s44.zip"
+    },
+    {
+      "id": "short-s45",
+      "title": "Chart from Excel in 30 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-15 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e7ab139eee0b31d00de8e27fd8d589efd08308f3da42bf2e68d779341ed35e18",
+      "resources": [
+        {
+          "file": "Excel-Analysis-Prompts.pdf",
+          "bytes": 131473
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "short-s45.zip"
+    },
+    {
+      "id": "short-s46",
+      "title": "Check AIs maths in 10 seconds",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-15 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "e7ab139eee0b31d00de8e27fd8d589efd08308f3da42bf2e68d779341ed35e18",
+      "resources": [
+        {
+          "file": "Excel-Analysis-Prompts.pdf",
+          "bytes": 131473
+        },
+        {
+          "file": "Sample-Sales-Data.xlsx",
+          "bytes": 32800
+        }
+      ],
+      "zip_name": "short-s46.zip"
+    },
+    {
+      "id": "short-s47",
+      "title": "SUMIFS from one sentence",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-17 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "9d7644b75940d155e7cd265e01139968fcc9506662848e45226bf7c9377b8404",
+      "resources": [
+        {
+          "file": "Formula-Practice-Data.xlsx",
+          "bytes": 41168
+        },
+        {
+          "file": "Formula-Prompt-Builder.pdf",
+          "bytes": 131219
+        }
+      ],
+      "zip_name": "short-s47.zip"
+    },
+    {
+      "id": "short-s48",
+      "title": "Fix a #VALUE! error with AI",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-17 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "9d7644b75940d155e7cd265e01139968fcc9506662848e45226bf7c9377b8404",
+      "resources": [
+        {
+          "file": "Formula-Practice-Data.xlsx",
+          "bytes": 41168
+        },
+        {
+          "file": "Formula-Prompt-Builder.pdf",
+          "bytes": 131219
+        }
+      ],
+      "zip_name": "short-s48.zip"
+    },
+    {
+      "id": "short-s49",
+      "title": "Nested IF made easy",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-17 12:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "9d7644b75940d155e7cd265e01139968fcc9506662848e45226bf7c9377b8404",
+      "resources": [
+        {
+          "file": "Formula-Practice-Data.xlsx",
+          "bytes": 41168
+        },
+        {
+          "file": "Formula-Prompt-Builder.pdf",
+          "bytes": 131219
+        }
+      ],
+      "zip_name": "short-s49.zip"
+    },
+    {
+      "id": "short-s50",
+      "title": "Turn cells red below 75%",
+      "type": "short",
+      "description": "Free companion learning materials.",
+      "release_at_ist": "2026-12-19 13:00",
+      "youtube_id": "",
+      "approved": false,
+      "sha256": "2d84ad593e22f6cdd4aedb78e654fccd49fb63be38c264c2e82c443a39eded39",
+      "resources": [
+        {
+          "file": "Attendance-Tracker-Nov-2026.xlsx",
+          "bytes": 24408
+        }
+      ],
+      "zip_name": "short-s50.zip"
+    }
+  ]
+}
