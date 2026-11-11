@@ -1,0 +1,48 @@
+name: Publish Digital Pathshala Resources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'config/**'
+      - 'scripts/**'
+      - 'vault/**'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: digital-pathshala-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Build verified released resources only
+        env:
+          DP_VAULT_PASSPHRASE: ${{ secrets.DP_VAULT_PASSPHRASE }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python3 scripts/build_site.py
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
