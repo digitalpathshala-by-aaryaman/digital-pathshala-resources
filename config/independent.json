@@ -1,4 +1,26 @@
 {
   "schema_version": 1,
-  "resources": []
+  "resources": [
+    {
+      "kind": "ebook",
+      "slug": "10-hidden-ai-mistakes-nobody-warns-you-about-2026",
+      "title": "10 Hidden AI Mistakes Nobody Warns You About (2026)",
+      "description": "A free 15-page Digital Pathshala e-book exploring ten overlooked AI behaviours. Try a two-minute experiment for each, use ten ready-to-copy correction prompts, and practise with the one-page Fix Kit and seven-day challenge.",
+      "category": "Artificial Intelligence",
+      "highlights": [
+        "10 lesser-known AI mistakes explained in plain language",
+        "A two-minute experiment for every chapter",
+        "10 copy-paste prompts and practical fixes",
+        "One-page Fix Kit to keep or print",
+        "Seven-day challenge to build better AI habits",
+        "Research sources and caveats included"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/10-hidden-ai-mistakes-nobody-warns-you-about-2026.svg",
+      "preview_images": [],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-10-Hidden-AI-Mistakes-2026.pdf",
+      "sha256": "33f22832b61efde560ccedcf1ade92fc927145939b2d0905f98802144ed505d9"
+    }
+  ]
 }
