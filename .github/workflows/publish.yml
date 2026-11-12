@@ -54,6 +54,14 @@ jobs:
             git commit -m "auto: record verified published YouTube Shorts"
             git push origin HEAD:main
           fi
+      - name: Prepare optional PDF cover and preview renderer
+        shell: bash
+        run: |
+          if find independent_source -type f -iname '*.pdf' -print -quit | grep -q .; then
+            if ! command -v pdftoppm >/dev/null 2>&1; then
+              (sudo apt-get update -qq && sudo apt-get install -y poppler-utils) || echo 'Optional PDF previews unavailable; fallback cover will be used.'
+            fi
+          fi
       - name: Build verified released resources only
         env:
           DP_VAULT_PASSPHRASE: ${{ secrets.DP_VAULT_PASSPHRASE }}
