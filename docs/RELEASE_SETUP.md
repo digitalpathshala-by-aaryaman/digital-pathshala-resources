@@ -1,30 +1,27 @@
-# Digital Pathshala release setup
+# Digital Pathshala — no-API-key automatic Shorts release
 
-The public resource count starts at **0**. The 90 prepared videos are internal registry records, **not** public downloads. There are 50 Shorts in a daily release calendar and 40 long videos held without dates.
+## Release schedule
 
-## One-time setup
+- One Short daily at **11:00 AM IST**, starting with `short-s01` on **16 November 2026** and ending with `short-s50` on **4 January 2027**.
+- All 40 long videos are **on hold**, with no dates assigned.
+- The public GitHub Pages website starts at **0 published resources**, then grows only as verified Shorts are released and the corresponding resource ZIP is staged.
+- The workflow polls the public YouTube channel after 11 AM IST, retries periodically during the day, and publishes the prepared resource page and ZIP only when the video's match is unambiguous.
+- **No YouTube Data API key is needed.** The tool reads the public YouTube RSS/Atom channel feed and Shorts page. YouTube does not guarantee these public formats remain unchanged. If discovery is unavailable or ambiguous, it holds the resource rather than guess.
+- Confirmed matches are saved as `config/discovered.json` and reused so already released resources remain in the catalogue as the public RSS feed rolls forward.
+- The GitHub Actions scheduler operates automatically: no scheduled ChatGPT conversation or repetitive manual HTML edits are needed. Execution times can be delayed by GitHub.
 
-1. In **GitHub Settings → Pages**, select **GitHub Actions** as the Pages source.
-2. Add Actions secrets `DP_VAULT_PASSPHRASE` (the private batch encryption key) and `YOUTUBE_API_KEY` (YouTube Data API v3, videos.list).
-3. Add the encrypted resource file `vault/batch-001.zip.enc`. **Do not upload plaintext resources to any public branch, even temporarily.**
-4. Enter an official privacy request contact email in `config/site.json` under `privacy_contact_email`. The release script refuses to publish resources until this is done.
-5. In the existing private Google Sheet Apps Script, set Script Property `PUBLISHED_MANIFEST_URL` to `https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/videos.json`; then check `setupSheets()` and deployment.
-6. Run the **Publish Digital Pathshala Resources** GitHub Actions workflow once to deploy the empty site. Scheduled builds repeat every 15 minutes (best effort).
+## One-time actions still required
 
-## Current Shorts schedule
+1. **GitHub Pages:** In **Settings → Pages → Build and deployment → Source** select **GitHub Actions**. The GitHub connector cannot configure repository Pages settings, and the current workflow stops at `actions/configure-pages@v5` until Pages is enabled.
+2. **Protected resource vault:** Upload the existing encrypted `batch-001.zip.enc` to the repository's `vault/` directory. Store its separate passphrase in the GitHub Actions secret **`DP_VAULT_PASSPHRASE`**. *This is an encryption passphrase, not a YouTube API key.* Never commit the password or decrypted ZIPs to GitHub.
+3. **Privacy contact:** Set an official email address the channel owner approves for privacy/data-deletion requests in `config/site.json` as `privacy_contact_email`. The builder intentionally holds downloadable files while it is missing.
+4. **Google Apps Script:** In Script Properties set `PUBLISHED_MANIFEST_URL` to **`https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/videos.json`**; the supplied Apps Script `/exec` URL is already referenced by the site's frontend, but should be validated end to end after Pages works.
+5. **Channel identity:** Public discovery is currently receiving HTTP 404 from YouTube in GitHub Actions. The fallback uses the verified public channel trailer in `config/site.json`; if both public routes remain unavailable, a stable YouTube **channel ID** (starting with `UC`) may need to be provided once as `youtube_channel_id`. This is public channel metadata, *not* an API credential.
 
-- Shorts **short-s01** through **short-s50** have consecutive **earliest-eligible release dates**, one per calendar day from **16 November 2026 to 4 January 2027**.
-- The time `00:00` IST is a date-only gate, **not** a claim about the video's upload time. The corresponding public YouTube video's exact ID and a verified public status are still required before a resource is released.
-- The 50 Shorts dates are approved; their `youtube_id` fields are currently **empty**. They will remain unavailable until those IDs, the YouTube API key, and resource vault are configured.
-- All **40 full-length videos** have **no release dates** and remain `approved: false`. The previously tentative long-video dates have been removed.
-- The website itself can be deployed now with 0 published resources. The repository owner must activate **Settings → Pages → GitHub Actions** (the connected GitHub integration cannot change Pages settings).
+## Publication safety
 
-## Adding videos
+The system verifies scheduled eligibility, a matched public feed entry (plus Shorts tab or a strong title match), the SHA-256 integrity of the ZIP, and presence of the encrypted staging batch.
 
-Each new video's metadata goes in `config/videos.json`. Set `youtube_id` (11-character public YouTube video ID), `release_at_ist` (`YYYY-MM-DD HH:mm`), `approved: true`, and the SHA-256 of its resource ZIP. Place only the **encrypted** ZIP batch in `vault/`. The workflow releases a resource only if the due time has passed, YouTube's API reports the video as **public**, the ZIP is found in the encrypted batch, and its SHA-256 matches. Without any one of these requirements, it remains unpublished.
+If multiple unrelated YouTube videos appear on the same day, the system holds uncertain cases. Publication can occur after 11 AM rather than exactly at 11:00. A public GitHub Pages ZIP URL is not access-protected: the form is a soft lead-collection gate before offering the download.
 
-All released videos share one page template, one Apps Script endpoint, one Google Sheet, and one public repository. Public links look like `https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/?v=long-01`.
-
-## Security limitations
-
-The form is a soft gate: after publication, anyone who knows the ZIP URL may download it without filling the form. Apps Script confirms a saved submission before the browser starts the download. The site does not publicly display private feedback. The scheduled Actions check is not exact-to-the-second and can run late. Verify the privacy notice, retention policy, and contact method before collecting data.
+As of 12 November 2026, the GitHub repository and automated code exist, but the Pages website is **not yet live**, and the encrypted resource archive has **not** been uploaded to the repository.
