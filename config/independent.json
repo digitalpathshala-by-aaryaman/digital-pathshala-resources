@@ -126,6 +126,58 @@
       "published_at_ist": "2026-11-12 00:00",
       "file_name": "Digital-Pathshala-PDF-to-Excel-Verified-Guide.pdf",
       "sha256": "50760db7dca74e42e2706f9b729608e8df05b66815b14b911de5643f166b5a6c"
+    },
+    {
+      "kind": "ebook",
+      "slug": "ask-chatgpt-for-a-tool-not-an-answer-2026",
+      "title": "Ask ChatGPT for a Tool, Not an Answer (2026)",
+      "description": "A free 8-page Digital Pathshala guide to ChatGPT's interactive responses, including calculators, charts, sliders, forms and quizzes. Explore 12 ready-to-use office prompts, how to request interactive tools, and how to check formulas, inputs and assumptions.",
+      "category": "ChatGPT & Interactive AI Tools",
+      "highlights": [
+        "Understand when ChatGPT can show an interactive tool instead of plain text",
+        "Try 12 ready-to-use prompts for calculators, charts, planners and quizzes",
+        "Build a meeting-cost calculator, bill splitter or EMI explorer",
+        "Learn the inputs, output and assumptions to include in your prompt",
+        "Check formulas and sample cases before trusting an AI-generated tool",
+        "Understand availability, limitations and visual display settings"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/ask-chatgpt-for-a-tool-not-an-answer-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        2,
+        3,
+        6
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-ChatGPT-Intelligent-UI.pdf",
+      "sha256": "d4a3e0486293b8d799c54a1535a5902d69524fc94a9ccdad34671453a937ff4a"
+    },
+    {
+      "kind": "ebook",
+      "slug": "claude-sheets-whiteboards-the-first-guide-2026",
+      "title": "Claude Sheets & Whiteboards — The First Guide (2026)",
+      "description": "An 11-page Digital Pathshala introduction to Claude Sheets and Whiteboards, covering beta access, setup, building editable trackers, formulas and dashboards, visual planning, 10 ready-to-use prompts, collaboration, privacy and limitations.",
+      "category": "Claude & AI Productivity",
+      "highlights": [
+        "Understand Claude Sheets and Whiteboards and who can use them",
+        "Set up artifacts and build a YouTube upload tracker in five minutes",
+        "Try five practical spreadsheet prompts for budgets, attendance and leads",
+        "Organize projects on shared whiteboards and turn plans into trackers",
+        "Compare Claude Sheets with Excel and Google Sheets",
+        "Learn the collaboration, privacy and beta feature limitations"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/claude-sheets-whiteboards-the-first-guide-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        2,
+        4,
+        7
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-Claude-Sheets-Whiteboards.pdf",
+      "sha256": "8f3efd8e74d6a99d827c49f229120eaa1a4b825e912ddcd25ad4cdfe40193b75"
     }
   ]
 }

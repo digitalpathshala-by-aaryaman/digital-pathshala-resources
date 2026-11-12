@@ -4,10 +4,10 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 BOOKS=[{"slug":"copy-text-from-anything-on-your-screen-2026","name":"Digital-Pathshala-Copy-Text-from-Anything.pdf","sha":"8963b4a77eee10fba5c4bd236f2c8ef7fc9815d88d8a28c9f9a64ef8267e5bc9","bytes":374421,"preview":[2,3,7]},{"slug":"pdf-tables-into-excel-the-honest-verified-guide-2026","name":"Digital-Pathshala-PDF-to-Excel-Verified-Guide.pdf","sha":"50760db7dca74e42e2706f9b729608e8df05b66815b14b911de5643f166b5a6c","bytes":409511,"preview":[2,4,6]}]
 class NewEbooks(unittest.TestCase):
-    def test_five_unique_resources(self):
+    def test_seven_unique_resources_including_previous_books(self):
         entries=json.loads((ROOT/"config/independent.json").read_text())["resources"]
-        self.assertEqual(len(entries),5)
-        self.assertEqual(len({x['slug'] for x in entries}),5)
+        self.assertEqual(len(entries),7)
+        self.assertEqual(len({x['slug'] for x in entries}),7)
         for b in BOOKS:
             rec=next(x for x in entries if x['slug']==b['slug'])
             self.assertEqual(rec['file_name'],b['name'])

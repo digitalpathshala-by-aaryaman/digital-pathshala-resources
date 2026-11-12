@@ -139,6 +139,36 @@ def verify_new_ebook_5():
     else:
         expect('Download is being activated.' in page,'ebook 5 safely withheld until uploaded')
 
+def verify_ebook_6():
+    slug='ask-chatgpt-for-a-tool-not-an-answer-2026'
+    url=SITE+'ebooks/'+slug+'/'
+    page=get(url,False)
+    expect('Ask ChatGPT for a Tool' in page,'ebook 6 permanent landing page')
+    items=[r for r in get(SITE+'independent.json').get('resources',[]) if r.get('id')=='ebook-'+slug]
+    if items:
+        item=items[0]
+        expect(item.get('page_url')==url and item.get('status')=='live','ebook 6 is published in the catalogue')
+        request=urllib.request.Request(item['resource_url'],headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(request,timeout=25) as response: pdf=response.read(1000000)
+        expect(len(pdf)==343252 and hashlib.sha256(pdf).hexdigest()=='d4a3e0486293b8d799c54a1535a5902d69524fc94a9ccdad34671453a937ff4a','ebook 6 original PDF checksum verified')
+    else:
+        expect('Download is being activated.' in page,'ebook 6 is withheld safely until publication')
+
+def verify_ebook_7():
+    slug='claude-sheets-whiteboards-the-first-guide-2026'
+    url=SITE+'ebooks/'+slug+'/'
+    page=get(url,False)
+    expect('Claude Sheets' in page,'ebook 7 permanent landing page')
+    items=[r for r in get(SITE+'independent.json').get('resources',[]) if r.get('id')=='ebook-'+slug]
+    if items:
+        item=items[0]
+        expect(item.get('page_url')==url and item.get('status')=='live','ebook 7 is published in the catalogue')
+        request=urllib.request.Request(item['resource_url'],headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(request,timeout=25) as response: pdf=response.read(1000000)
+        expect(len(pdf)==399857 and hashlib.sha256(pdf).hexdigest()=='8f3efd8e74d6a99d827c49f229120eaa1a4b825e912ddcd25ad4cdfe40193b75','ebook 7 original PDF checksum verified')
+    else:
+        expect('Download is being activated.' in page,'ebook 7 is withheld safely until publication')
+
 def main():
     failures = []
     checks = [
@@ -151,6 +181,8 @@ def main():
         ("Third e-book permanent link and PDF state", verify_third_ebook),
         ("Fourth e-book URL and PDF state", verify_new_ebook_4),
         ("Fifth e-book URL and PDF state", verify_new_ebook_5),
+        ("Sixth e-book permanent URL and PDF", verify_ebook_6),
+        ("Seventh e-book permanent URL and PDF", verify_ebook_7),
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),
