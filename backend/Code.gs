@@ -1,6 +1,6 @@
 /**
  * DIGITAL PATHSHALA BY AARYAMAN GOENKA — PERMANENT RESOURCE FORM BACKEND
- * Code.gs | Version 2.0 | 11 November 2026 | Time zone: Asia/Kolkata
+ * Code.gs | Version 3.0 | 11 November 2026 | Time zone: Asia/Kolkata
  *
  * ONE-TIME SETUP
  * 1. Create a PRIVATE Google Sheet -> Extensions -> Apps Script.
@@ -36,7 +36,7 @@
  */
 
 const DP = Object.freeze({
-  VERSION: '2.0',
+  VERSION: '3.0',
   TIMEZONE: 'Asia/Kolkata',
   MANIFEST_PROPERTY: 'PUBLISHED_MANIFEST_URL',
   SHEET_PROPERTY: 'SPREADSHEET_ID',
@@ -49,7 +49,9 @@ const DP = Object.freeze({
     VIDEOS: 'Videos',
     LEADS: 'Download_Leads',
     FEEDBACK: 'Private_Feedback',
-    RECEIPTS: 'Request_Receipts'
+    RECEIPTS: 'Request_Receipts',
+    INDEPENDENT_LEADS: 'Independent_Downloads',
+    INDEPENDENT_FEEDBACK: 'Independent_Feedback'
   })
 });
 
@@ -65,6 +67,15 @@ const DP_COLUMNS = Object.freeze({
   ],
   Private_Feedback: [
     'submitted_at_ist','request_id','video_id','video_title','feedback_type',
+    'message','name','email','privacy_consent','page_url'
+  ],
+  Independent_Downloads: [
+    'submitted_at_ist','request_id','resource_id','resource_title','resource_type',
+    'full_name','email','phone','privacy_consent','marketing_opt_in',
+    'page_url','referrer','utm_source','utm_medium','utm_campaign'
+  ],
+  Independent_Feedback: [
+    'submitted_at_ist','request_id','resource_id','resource_title','feedback_type',
     'message','name','email','privacy_consent','page_url'
   ],
   Request_Receipts: [
@@ -131,7 +142,7 @@ function doGet(e) {
     } else if (p.action === 'receipt') {
       const id = dpText_(p.request_id, 80);
       result = dpIsUuid_(id) ? dpGetReceipt_(id) : dpErrorResult_('INVALID_REQUEST_ID', 'Invalid request ID.');
-    } else if (p.action === 'video') {
+    } else if (p.action === 'video' || p.action === 'resource') {
       const id = dpText_(p.video_id || p.v, 72).toLowerCase();
       result = dpPublicVideoStatus_(id);
     } else {
@@ -187,13 +198,16 @@ function dpProcessSubmission_(p, requestId) {
   const pageUrl = dpText_(p.page_url, 700);
   const videoId = dpIdFromPage_(pageUrl, siteRoot);
   if (!videoId) throw dpProblem_('INVALID_PAGE', 'Please open the official resource page.');
+  if (p.resource_id && dpText_(p.resource_id, 72).toLowerCase() !== videoId) {
+    throw dpProblem_('RESOURCE_MISMATCH', 'Page and resource do not match.');
+  }
   if (p.video_id && dpText_(p.video_id, 72).toLowerCase() !== videoId) {
     throw dpProblem_('VIDEO_MISMATCH', 'The page and video do not match.');
   }
   // Publication is authoritative: Sheet rows NEVER authorize a release.
   const video = dpPublishedVideo_(videoId, dpPublishedManifest_());
-  if (!video) throw dpProblem_('NOT_RELEASED', 'Resources for this video are not available yet.');
-  if (action === 'download' && !dpValidResourceUrl_(video.resource_url, siteRoot)) {
+  if (!video) throw dpProblem_('NOT_RELEASED', 'This resource is not available yet.');
+  if (action === 'download' && !dpValidResourceUrl_(video.resource_url, siteRoot, video.type)) {
     throw dpProblem_('RESOURCE_NOT_READY', 'The download has not been published yet.');
   }
 
@@ -217,7 +231,7 @@ function dpProcessSubmission_(p, requestId) {
 
     const ss = dpSpreadsheet_();
     if (action === 'download') {
-      ss.getSheetByName(DP.SHEETS.LEADS).appendRow([
+      ss.getSheetByName(dpIsIndependentType_(video.type) ? DP.SHEETS.INDEPENDENT_LEADS : DP.SHEETS.LEADS).appendRow([
         now, requestId, video.id, dpCell_(video.title), dpCell_(video.type),
         dpCell_(fullName), dpCell_(email), dpCell_(phone), 'YES',
         p.marketing_opt_in === true ? 'YES' : 'NO', dpCell_(pageUrl),
@@ -225,7 +239,7 @@ function dpProcessSubmission_(p, requestId) {
         dpCell_(dpText_(p.utm_medium, 100)), dpCell_(dpText_(p.utm_campaign, 100))
       ]);
     } else {
-      ss.getSheetByName(DP.SHEETS.FEEDBACK).appendRow([
+      ss.getSheetByName(dpIsIndependentType_(video.type) ? DP.SHEETS.INDEPENDENT_FEEDBACK : DP.SHEETS.FEEDBACK).appendRow([
         now, requestId, video.id, dpCell_(video.title), dpCell_(feedbackType),
         dpCell_(message), dpCell_(fullName), dpCell_(email), 'YES', dpCell_(pageUrl)
       ]);
@@ -241,7 +255,9 @@ function dpProcessSubmission_(p, requestId) {
 
 function dpRepairReceipt_(requestId, action, videoId, video, now) {
   const sh = dpSpreadsheet_().getSheetByName(
-    action === 'download' ? DP.SHEETS.LEADS : DP.SHEETS.FEEDBACK);
+    action === 'download'
+      ? (dpIsIndependentType_(video.type) ? DP.SHEETS.INDEPENDENT_LEADS : DP.SHEETS.LEADS)
+      : (dpIsIndependentType_(video.type) ? DP.SHEETS.INDEPENDENT_FEEDBACK : DP.SHEETS.FEEDBACK));
   const rowNum = dpFindIdRow_(sh, requestId, 2);
   if (!rowNum) return null;
   const rowVideoId = dpText_(sh.getRange(rowNum, 3).getValue(), 72);
