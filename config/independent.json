@@ -25,6 +25,31 @@
         2,
         13
       ]
+    },
+    {
+      "kind": "ebook",
+      "slug": "the-hidden-switches-inside-chatgpt-gemini-claude-2026",
+      "title": "The Hidden Switches Inside ChatGPT, Gemini & Claude (2026)",
+      "description": "A free 15-page Digital Pathshala e-book about the often-overlooked settings in ChatGPT, Gemini and Claude. Understand temporary chats, memory, custom instructions, training controls, data retention, shared links and projects, with a printable settings map and a 30-minute setup plan.",
+      "category": "AI Tools & Privacy",
+      "highlights": [
+        "Ten practical AI settings and habits, explained in plain language",
+        "Temporary chats, memory auditing and memory hygiene",
+        "Custom instructions for four professions",
+        "Training switches, retention periods and shared links",
+        "Printable comparison of settings across ChatGPT, Gemini and Claude",
+        "30-minute setup plan and monthly clean-up checklist"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/the-hidden-switches-inside-chatgpt-gemini-claude-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        2,
+        13
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-Hidden-AI-Settings-2026.pdf",
+      "sha256": "f6d65036d58ed61eb70f92ec272ba4fb054a90605085dd928595b3e4dd0deafe"
     }
   ]
 }
