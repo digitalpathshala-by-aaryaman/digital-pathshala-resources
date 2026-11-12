@@ -43,6 +43,9 @@ jobs:
       - name: Test deployed Apps Script health (read only)
         continue-on-error: true
         run: python3 scripts/check_backend_health.py
+      - name: Diagnose browser form confirmation without submitting data
+        continue-on-error: true
+        run: python3 scripts/diagnose_confirmation.py
       - name: Discover public Shorts without a YouTube API key
         run: python3 scripts/discover_shorts.py
       - name: Persist confirmed video links for future releases
