@@ -169,6 +169,26 @@ def verify_ebook_7():
     else:
         expect('Download is being activated.' in page,'ebook 7 is withheld safely until publication')
 
+SIZE_EBOOK_8 = 396841
+
+def verify_ebook_8():
+    slug='chatgpt-images-2-6-gifs-and-the-same-character-every-time-2026'
+    url=SITE+'ebooks/'+slug+'/'
+    page=get(url,False)
+    expect('GIFs and the Same Character' in page,'ebook 8 permanent landing page responds')
+    rows=[r for r in get(SITE+'independent.json').get('resources',[]) if r.get('id')=='ebook-'+slug]
+    if rows:
+        item=rows[0]
+        expect(item.get('page_url')==url and item.get('status')=='live','ebook 8 publicly listed with correct permanent URL')
+        req=urllib.request.Request(item['resource_url'],headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(req,timeout=25) as response:
+            data=response.read(1000000)
+        expect(len(data)==SIZE_EBOOK_8 and hashlib.sha256(data).hexdigest()=='d6b9a7f21246ee1eef1a051dbddf311a7d120fb8f4b194a20d4b6fc1f3ddab86',
+               'ebook 8 original PDF checksum verified from public download')
+    else:
+        expect('Download is being activated.' in page,
+               'ebook 8 correctly withholds download until original PDF upload')
+
 def main():
     failures = []
     checks = [
@@ -183,6 +203,7 @@ def main():
         ("Fifth e-book URL and PDF state", verify_new_ebook_5),
         ("Sixth e-book permanent URL and PDF", verify_ebook_6),
         ("Seventh e-book permanent URL and PDF", verify_ebook_7),
+        ("Eighth e-book permanent URL and PDF", verify_ebook_8),
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),

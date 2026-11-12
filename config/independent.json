@@ -178,6 +178,33 @@
       "published_at_ist": "2026-11-12 00:00",
       "file_name": "Digital-Pathshala-Claude-Sheets-Whiteboards.pdf",
       "sha256": "8f3efd8e74d6a99d827c49f229120eaa1a4b825e912ddcd25ad4cdfe40193b75"
+    },
+    {
+      "kind": "ebook",
+      "slug": "chatgpt-images-2-6-gifs-and-the-same-character-every-time-2026",
+      "title": "ChatGPT Images 2.6 — GIFs and the Same Character, Every Time (2026)",
+      "description": "An 11-page free Digital Pathshala guide to making looping GIFs and keeping characters, mascots and products visually consistent with reference images. Includes step-by-step workflows, 22 sample prompts, troubleshooting, and consent and privacy precautions.",
+      "category": "ChatGPT Image Generation & Animation",
+      "highlights": [
+        "Plan your first looping GIF with one simple movement, fixed camera and smooth repeat",
+        "Try 10 ready-to-copy GIF prompts for reactions, product shots, festivals and icons",
+        "Build and reuse a consistent character or product reference across new images",
+        "Use seven reference-image prompts for mascots, products and thumbnail series",
+        "Edit individual details while keeping the rest of the picture consistent",
+        "Learn creator safety, consent and privacy considerations",
+        "Follow a seven-day practice plan and troubleshooting checklist"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/chatgpt-images-2-6-gifs-and-the-same-character-every-time-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        3,
+        6,
+        9
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-ChatGPT-Images-2.6-GIFs-References.pdf",
+      "sha256": "d6b9a7f21246ee1eef1a051dbddf311a7d120fb8f4b194a20d4b6fc1f3ddab86"
     }
   ]
 }
