@@ -31,3 +31,15 @@ The repository contains no visitor emails, private Google Sheets, tokens or pass
 ---
 
 *Digital Pathshala by Aaryaman Goenka — Learn · Create · Grow*
+
+## Free independent resources (new)
+
+The website also supports a separate **Free E-books & Tools** section for PDF e-books, Excel workbooks, guides and HTML tools packaged as ZIPs. These are independent of YouTube video release dates and use the existing site design, common search and lead form.
+
+For each approved resource, `scripts/register_resource.py` generates a permanent title-based slug. GitHub Actions builds a dedicated SEO-ready landing page under `ebooks/<title-slug>/` (or templates, guides, tools, resources), preview images, and an original-format download. Unpublished files must never be uploaded unencrypted to the public repository.
+
+The existing `/?v=short-s01` through `/?v=short-s50` routes and daily Shorts schedule have not changed.
+
+**Backend update required:** Replace the existing bound Apps Script `Code.gs` with `backend/Code.gs` Version 3.0, run `setupSheets()` and `checkSetup()`, then deploy a **new version of the existing web app deployment**. This adds independent download/feedback Sheet tabs without replacing the old ones. See [complete setup guide](docs/INDEPENDENT_RESOURCE_WORKFLOW.md).
+
+Note: ZIP vault staging and real YouTube discovery are separate pending tasks, not fixed by this library upgrade.
