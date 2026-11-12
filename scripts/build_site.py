@@ -123,6 +123,13 @@ def build(root=ROOT, output=None, now=None, public_ids=None):
             archive.close()
     published.sort(key=lambda v: (v["release_at_ist"], v["id"]), reverse=True)
     (output / "videos.json").write_text(json.dumps({"videos": published}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Generate independent resources from the separately approved catalogue.
+    # Existing video URLs, dates and ZIP release logic are unchanged.
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("independent_builder", Path(__file__).with_name("build_independent.py"))
+    independent_builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(independent_builder)
+    independent_builder.publish(root, output, now, base)
     (output / ".nojekyll").touch()
     print("Published resource count:", len(published), "out of", len(plan), "prepared video IDs.")
     return published
