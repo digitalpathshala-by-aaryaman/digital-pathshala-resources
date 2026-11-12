@@ -13,10 +13,13 @@ on:
       - '.github/workflows/publish.yml'
   workflow_dispatch:
   schedule:
-    - cron: '7,22,37,52 * * * *'
+    # Poll after the 11 AM IST Short; retry while the feed catches up.
+    # GitHub scheduled executions are best effort, not precise to the minute.
+    - cron: '17,47 11-23 * * *'
+      timezone: "Asia/Kolkata"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -31,12 +34,22 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate publication safeguards
         run: python3 -m unittest discover -s tests -v
-      - uses: actions/configure-pages@v5
+      - name: Discover public Shorts without a YouTube API key
+        run: python3 scripts/discover_shorts.py
+      - name: Persist confirmed video links for future releases
+        run: |
+          if ! git diff --quiet -- config/discovered.json; then
+            git config user.name "digital-pathshala-publisher[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add config/discovered.json
+            git commit -m "auto: record verified published YouTube Shorts"
+            git push origin HEAD:main
+          fi
       - name: Build verified released resources only
         env:
           DP_VAULT_PASSPHRASE: ${{ secrets.DP_VAULT_PASSPHRASE }}
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python3 scripts/build_site.py
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
