@@ -22,7 +22,9 @@ This **one public GitHub repository** will host the consistent GitHub Pages webs
 
 ## Publication status
 
-The viewer-facing frontend is **under design review**. No unreleased ZIPs or internal video schedules will be uploaded to the public repository. The publishing workflow and Google Apps Script integration must pass live tests before launch.
+The approved viewer-facing frontend and release-aware publishing code are committed. **The live GitHub Pages deployment awaits one-time Pages activation** in repository Settings, followed by end-to-end testing of the lead form.
+
+**Release calendar:** one prepared Short each day, `short-s01` on 16 November 2026 through `short-s50` on 4 January 2027. All 40 long-video dates remain blank pending the channel owner's instructions. Dates are eligibility gates, not guaranteed publication times. The public site shows only YouTube-verified releases; unreleased resource ZIPs are not committed in plaintext. The encrypted archive, YouTube IDs, API key and privacy contact are still needed before downloads will appear. See [release setup](docs/RELEASE_SETUP.md).
 
 The repository contains no visitor emails, private Google Sheets, tokens or passwords.
 
