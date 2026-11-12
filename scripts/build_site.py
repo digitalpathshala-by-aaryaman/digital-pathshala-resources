@@ -32,28 +32,6 @@ def due(value, now):
     except ValueError:
         return False
 
-def youtube_public(ids):
-    key = os.getenv("YOUTUBE_API_KEY", "")
-    if not ids or not key:
-        return set()
-    found = set()
-    for start in range(0, len(ids), 50):
-        url = "https://www.googleapis.com/youtube/v3/videos?" + urllib.parse.urlencode({
-            "part": "status", "id": ",".join(ids[start:start + 50]), "key": key
-        })
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "DigitalPathshalaResources/1.0"})
-            with urllib.request.urlopen(req, timeout=20) as response:
-                items = json.load(response).get("items", [])
-        except Exception as exc:
-            print("YouTube verification failed; withholding unverified releases:", type(exc).__name__, file=sys.stderr)
-            return set()
-        for item in items:
-            status = item.get("status", {})
-            if status.get("privacyStatus") == "public" and status.get("uploadStatus", "processed") == "processed":
-                found.add(item.get("id", ""))
-    return found
-
 def open_batches(root, temp):
     if not os.getenv("DP_VAULT_PASSPHRASE", ""):
         return []
@@ -95,19 +73,28 @@ def build(root=ROOT, output=None, now=None, public_ids=None):
     (output / "resources").mkdir(exist_ok=True)
     now = now or dt.datetime.now(IST)
     ids = set()
+    proof_file = root / "config/discovered.json"
+    proof_registry = load(proof_file).get("shorts", {}) if proof_file.exists() else {}
     due_videos = []
     for v in plan:
         vid = v.get("id", "")
         if not ID.fullmatch(vid) or vid in ids:
             raise ValueError("Invalid/duplicate ID: " + repr(vid))
         ids.add(vid)
-        if v.get("approved") is True and due(v.get("release_at_ist"), now) and YOUTUBE_ID.fullmatch(v.get("youtube_id", "")):
-            due_videos.append(v)
+        # Shorts use a durable GitHub Actions discovery ledger, populated from
+        # the public channel RSS and verified Shorts tab / unique title evidence.
+        # Do not assume a video went live merely because 11 AM has passed.
+        proof = proof_registry.get(vid, {})
+        youtube_id = proof.get("youtube_id", "") if v.get("type") == "short" else ""
+        if (v.get("approved") is True and due(v.get("release_at_ist"), now)
+                and YOUTUBE_ID.fullmatch(youtube_id)
+                and proof.get("proof", "").startswith("public-channel-feed")):
+            due_videos.append({**v, "youtube_id": youtube_id})
     if not site.get("privacy_contact_email") or "@" not in site["privacy_contact_email"]:
         print("Privacy contact missing; holding all releases.", file=sys.stderr)
         due_videos = []
     if public_ids is None:
-        public_ids = youtube_public([v["youtube_id"] for v in due_videos])
+        public_ids = {v["youtube_id"] for v in due_videos}
     ready = [v for v in due_videos if v["youtube_id"] in public_ids]
     published = []
     with tempfile.TemporaryDirectory() as temp:
