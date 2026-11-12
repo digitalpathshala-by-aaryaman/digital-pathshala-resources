@@ -320,7 +320,7 @@ function dpPublicVideoStatus_(id) {
 function dpPublishedManifest_() {
   const url = dpManifestUrl_();
   const cache = CacheService.getScriptCache();
-  const key = 'dp-published-videos-v2';
+  const key = 'dp-published-catalog-v3';
   const cached = cache.get(key);
   if (cached) {
     try { return JSON.parse(cached); } catch (ignore) {}
@@ -342,6 +342,47 @@ function dpPublishedManifest_() {
   if (!data || !Array.isArray(data.videos) || data.videos.length > DP.MAX_VIDEOS) {
     throw dpProblem_('CATALOG_INVALID', 'The video catalogue is not in the supported format.');
   }
+  // Merge only the live independent catalogue published by the same Pages site.
+  // Draft metadata never authorizes a download.
+  const independentUrl = url.replace(/videos\.json$/, 'independent.json');
+  let independentResponse;
+  try {
+    independentResponse = UrlFetchApp.fetch(independentUrl, {
+      muteHttpExceptions: true, followRedirects: true, validateHttpsCertificates: true,
+      headers: { 'Accept': 'application/json' }
+    });
+  } catch (err) {
+    throw dpProblem_('CATALOG_UNAVAILABLE', 'Independent resource catalogue is unavailable.');
+  }
+  if (independentResponse.getResponseCode() !== 200) {
+    throw dpProblem_('CATALOG_UNAVAILABLE', 'Independent resource catalogue has not been published.');
+  }
+  let independent;
+  try { independent = JSON.parse(independentResponse.getContentText()); }
+  catch (ignore) { throw dpProblem_('CATALOG_INVALID', 'Invalid independent resource catalogue.'); }
+  if (!independent || !Array.isArray(independent.resources) ||
+      independent.resources.length > DP.MAX_VIDEOS) {
+    throw dpProblem_('CATALOG_INVALID', 'Unexpected independent resource catalogue.');
+  }
+  independent.resources.forEach(function(r) {
+    const id = dpText_(r.id, 72).toLowerCase();
+    const kind = dpText_(r.kind, 30).toLowerCase();
+    const slug = dpText_(r.slug, 72).toLowerCase();
+    const root = dpSiteRoot_(url);
+    const paths = {ebook:'ebooks',template:'templates',guide:'guides',tool:'tools',resource:'resources'};
+    if (!paths[kind] || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) ||
+        id !== kind + '-' + slug ||
+        dpText_(r.page_url, 1000) !== root + paths[kind] + '/' + slug + '/' ||
+        dpText_(r.status, 30) !== 'live' ||
+        !dpValidResourceUrl_(dpText_(r.resource_url, 1500), root, kind)) {
+      throw dpProblem_('CATALOG_INVALID', 'Invalid published independent resource.');
+    }
+    data.videos.push({
+      id: id, title: r.title, type: kind, status: 'live',
+      release_at_ist: r.published_at_ist, resource_url: r.resource_url,
+      page_url: r.page_url, youtube_url: ''
+    });
+  });
   // Treat duplicate IDs as a deployment mistake: fail CLOSED.
   const ids = {};
   data.videos.forEach(function(v) {
@@ -369,7 +410,7 @@ function dpPublishedVideo_(id, manifest) {
     const release = dpReleaseTime_(v.release_at_ist);
     if (!release || dpNowIstMinute_() < release) return null;
     const resource = dpText_(v.resource_url, 1500);
-    if (!dpValidResourceUrl_(resource, siteRoot)) return null;
+    if (!dpValidResourceUrl_(resource, siteRoot, v.type)) return null;
     return { id: id, title: dpText_(v.title, 250) || id,
       type: dpText_(v.type, 50), release_at_ist: release,
       resource_url: resource, youtube_url: dpText_(v.youtube_url, 700) };
@@ -401,6 +442,7 @@ function syncPublishedVideos() {
     const status = ready ? 'LIVE' : 'HOLD';
     const zip = dpText_(v.resource_url, 1500);
     const notes = existing[id] ? sh.getRange(existing[id], 8).getValue() : '';
+    if (dpIsIndependentType_(v.type)) return; // Independent submissions use separate Sheets tabs.
     const row = [id, dpCell_(dpText_(v.title, 250)), dpCell_(dpText_(v.type, 50)),
       release || '', status, dpValidResourceUrl_(zip, siteRoot) ? zip : '',
       dpCell_(dpText_(v.youtube_url, 700)), notes, now];
@@ -456,15 +498,28 @@ function dpIsPaused_() {
   return String(PropertiesService.getScriptProperties().getProperty(DP.PAUSE_PROPERTY) || '')
     .toUpperCase() === 'TRUE';
 }
-function dpValidResourceUrl_(url, root) {
-  if (!url || url.indexOf(root + 'resources/') !== 0 || !/\.zip(?:\?.*)?$/i.test(url)) return false;
-  return !/[\s#]/.test(url) && url.length <= 1500;
+function dpIsIndependentType_(type) {
+  return /^(ebook|template|guide|tool|resource)$/.test(String(type || ''));
+}
+function dpValidResourceUrl_(url, root, type) {
+  if (!url || /[\s#]/.test(url) || url.length > 1500) return false;
+  if (dpIsIndependentType_(type)) {
+    return url.indexOf(root + 'downloads/') === 0 &&
+      /\.(pdf|xlsx|xlsm|zip)$/i.test(url) &&
+      !/[?\\]/.test(url);
+  }
+  return url.indexOf(root + 'resources/') === 0 && /\.zip(?:\?.*)?$/i.test(url);
 }
 function dpIdFromPage_(url, root) {
   // Ignore URL fragments; browsers may append #resources when users navigate.
   const cleanUrl = String(url || '').split('#')[0];
   if (!cleanUrl || cleanUrl.indexOf(root) !== 0 || /\s/.test(cleanUrl)) return '';
   const suffix = cleanUrl.slice(root.length);
+  const indie = /^(ebooks|templates|guides|tools|resources)\/([a-z0-9]+(?:-[a-z0-9]+)*)\/(?:index\.html)?(?:\?[^#]*)?$/.exec(suffix);
+  if (indie) {
+    const singular = {ebooks:'ebook',templates:'template',guides:'guide',tools:'tool',resources:'resource'};
+    return singular[indie[1]] + '-' + indie[2];
+  }
   // Only resource page paths are accepted: video.html?v=<ID>, index.html?v=<ID>
   // or future clean URLs v/<ID>. Never trust a visitor-selected video ID.
   const page = /^(?:index|video)\.html\?/.test(suffix) || /^\?/.test(suffix);
