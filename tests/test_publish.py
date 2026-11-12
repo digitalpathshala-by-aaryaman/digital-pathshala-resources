@@ -23,7 +23,7 @@ class PublishSafetyTests(unittest.TestCase):
         plan = json.loads((ROOT / "config/videos.json").read_text())["videos"]
         shorts = sorted((v for v in plan if v["type"] == "short"), key=lambda v: int(v["id"].split("s")[-1]))
         self.assertEqual(len(shorts), 50)
-        start = dt.datetime(2026, 11, 16, 0, 0)
+        start = dt.datetime(2026, 11, 16, 11, 0)
         for i, v in enumerate(shorts):
             self.assertEqual(v["id"], "short-s%02d" % (i + 1))
             self.assertEqual(v["release_at_ist"], (start + dt.timedelta(days=i)).strftime("%Y-%m-%d %H:%M"))
@@ -31,6 +31,10 @@ class PublishSafetyTests(unittest.TestCase):
         longs = [v for v in plan if v["type"] == "long"]
         self.assertEqual(len(longs), 40)
         self.assertTrue(all(v["release_at_ist"] == "" and v["approved"] is False for v in longs))
+
+    def test_no_keyless_release_without_a_confirmed_feed_match(self):
+        proof = json.loads((ROOT / "config/discovered.json").read_text())
+        self.assertEqual(proof["shorts"], {})
 
     def test_shorts_without_youtube_ids_remain_unpublished(self):
         with tempfile.TemporaryDirectory() as temp:
