@@ -10,6 +10,7 @@ on:
       - 'docs/**'
       - 'scripts/**'
       - 'vault/**'
+      - 'independent_source/**'
       - '.github/workflows/publish.yml'
   workflow_dispatch:
   schedule:
