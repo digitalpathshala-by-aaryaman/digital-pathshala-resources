@@ -108,6 +108,37 @@ def verify_third_ebook():
         expect('Download is being activated.' in page,
                'third ebook safely withheld until exact PDF upload')
 
+def verify_new_ebook_4():
+    slug='copy-text-from-anything-on-your-screen-2026'
+    url=SITE+'ebooks/'+slug+'/'
+    page=get(url,False)
+    expect('Copy Text from Anything' in page,'ebook 4 permanent landing page')
+    rows=[r for r in get(SITE+'independent.json').get('resources',[]) if r.get('id')=='ebook-'+slug]
+    if rows:
+        item=rows[0]
+        expect(item.get('page_url')==url and item.get('status')=='live','ebook 4 listed in public catalogue')
+        req=urllib.request.Request(item['resource_url'],headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(req,timeout=25) as response: blob=response.read(1000000)
+        expect(len(blob)==374421 and hashlib.sha256(blob).hexdigest()=='8963b4a77eee10fba5c4bd236f2c8ef7fc9815d88d8a28c9f9a64ef8267e5bc9','ebook 4 PDF exact original checksum')
+    else:
+        expect('Download is being activated.' in page,'ebook 4 safely withheld until uploaded')
+
+
+def verify_new_ebook_5():
+    slug='pdf-tables-into-excel-the-honest-verified-guide-2026'
+    url=SITE+'ebooks/'+slug+'/'
+    page=get(url,False)
+    expect('PDF Tables into Excel' in page,'ebook 5 permanent landing page')
+    rows=[r for r in get(SITE+'independent.json').get('resources',[]) if r.get('id')=='ebook-'+slug]
+    if rows:
+        item=rows[0]
+        expect(item.get('page_url')==url and item.get('status')=='live','ebook 5 listed in public catalogue')
+        req=urllib.request.Request(item['resource_url'],headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(req,timeout=25) as response: blob=response.read(1000000)
+        expect(len(blob)==409511 and hashlib.sha256(blob).hexdigest()=='50760db7dca74e42e2706f9b729608e8df05b66815b14b911de5643f166b5a6c','ebook 5 PDF exact original checksum')
+    else:
+        expect('Download is being activated.' in page,'ebook 5 safely withheld until uploaded')
+
 def main():
     failures = []
     checks = [
@@ -118,6 +149,8 @@ def main():
         ("First e-book permanent link and PDF state", verify_first_ebook),
         ("Second e-book permanent link and PDF state", verify_second_ebook),
         ("Third e-book permanent link and PDF state", verify_third_ebook),
+        ("Fourth e-book URL and PDF state", verify_new_ebook_4),
+        ("Fifth e-book URL and PDF state", verify_new_ebook_5),
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),

@@ -76,6 +76,56 @@
       "published_at_ist": "2026-11-12 00:00",
       "file_name": "Digital-Pathshala-AI-in-Your-Browser-2026.pdf",
       "sha256": "85d56d8578f7e350b2b364c888bbcdec5018d1f5a0b54994bee0132c94d484bc"
+    },
+    {
+      "kind": "ebook",
+      "slug": "copy-text-from-anything-on-your-screen-2026",
+      "title": "Copy Text from Anything on Your Screen (2026)",
+      "description": "Free 8-page Digital Pathshala guide showing how to copy text from screenshots, scanned letters, videos and difficult-to-select software using Windows 11 Snipping Tool, PowerToys, OneNote and Excel Data from Picture. Includes keyboard shortcuts, privacy differences and OCR checking tips.",
+      "category": "Windows Productivity & OCR",
+      "highlights": [
+        "Snipping Tool text actions and Quick redact",
+        "PowerToys Text Extractor and Advanced Paste",
+        "OneNote OCR for multi-page scans",
+        "Excel Data from Picture for tables",
+        "Windows clipboard history and OCR proofreading"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/copy-text-from-anything-on-your-screen-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        2,
+        3,
+        7
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-Copy-Text-from-Anything.pdf",
+      "sha256": "8963b4a77eee10fba5c4bd236f2c8ef7fc9815d88d8a28c9f9a64ef8267e5bc9"
+    },
+    {
+      "kind": "ebook",
+      "slug": "pdf-tables-into-excel-the-honest-verified-guide-2026",
+      "title": "PDF Tables into Excel — The Honest, Verified Guide (2026)",
+      "description": "Free 11-page Digital Pathshala guide to extracting PDF tables into Excel accurately. Learn which methods suit text, scanned and password-protected PDFs, how to use Excel Power Query, how to reconcile rows and running balances, and privacy considerations when uploading bank statements to AI.",
+      "category": "Excel & PDF Conversion",
+      "highlights": [
+        "Choose the right method for text versus scanned PDFs",
+        "Excel Power Query: From PDF, cleanup and refresh",
+        "Handle password-protected statements and multi-line rows",
+        "Verify transaction counts, totals and running balances",
+        "OCR and AI alternatives, including financial privacy safeguards"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/pdf-tables-into-excel-the-honest-verified-guide-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        2,
+        4,
+        6
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-PDF-to-Excel-Verified-Guide.pdf",
+      "sha256": "50760db7dca74e42e2706f9b729608e8df05b66815b14b911de5643f166b5a6c"
     }
   ]
 }
