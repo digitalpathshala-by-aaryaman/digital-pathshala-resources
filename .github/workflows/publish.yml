@@ -46,6 +46,10 @@ jobs:
       - name: Diagnose browser form confirmation without submitting data
         continue-on-error: true
         run: python3 scripts/diagnose_confirmation.py
+      - name: One-time synthetic form submission and Sheet receipt test
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[form-e2e]')
+        continue-on-error: true
+        run: python3 scripts/test_form_e2e_once.py
       - name: Discover public Shorts without a YouTube API key
         run: python3 scripts/discover_shorts.py
       - name: Persist confirmed video links for future releases
