@@ -20,7 +20,11 @@
       "approved": true,
       "published_at_ist": "2026-11-12 00:00",
       "file_name": "Digital-Pathshala-10-Hidden-AI-Mistakes-2026.pdf",
-      "sha256": "33f22832b61efde560ccedcf1ade92fc927145939b2d0905f98802144ed505d9"
+      "sha256": "33f22832b61efde560ccedcf1ade92fc927145939b2d0905f98802144ed505d9",
+      "preview_pages": [
+        2,
+        13
+      ]
     }
   ]
 }
