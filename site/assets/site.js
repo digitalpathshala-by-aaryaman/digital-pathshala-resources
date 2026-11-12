@@ -12,6 +12,8 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isVideoId = s => /^[a-z0-9][a-z0-9-]{1,71}$/i.test(s||'');
 let published=[], independent=[], selected=null, kind='all', filterText='', busy=false;
+// Preserve request IDs after transient failures so retries cannot create duplicate leads.
+let pendingDownloadRequest=null, pendingFeedbackRequest=null;
 function nowIst(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()).reduce((a,x)=>{a[x.type]=x.value;return a;},{});}
 function istString(){const v=nowIst();return `${v.year}-${v.month}-${v.day} ${v.hour}:${v.minute}`;}
 function validRelease(v){return v.status==='live' && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(v.release_at_ist || '') && v.release_at_ist<=istString();}
@@ -50,17 +52,165 @@ function embed(v){const url=String(v.youtube_url||'');let id='';try{const u=new 
 function detail(v){selected=v;document.title=`${v.title} | Digital Pathshala Resources`;$('app').innerHTML=`<section class="detail"><div class="container"><a class="back" href="?">← All published resources</a><div class="detail-grid"><div class="panel detail-main"><div class="detail-tag">${esc(type(v))} · ${esc(keywords(v))}</div><h1 class="detail-title">${esc(v.title)}</h1><p class="detail-copy">${esc(v.description||'Explore the free learning material prepared for this video. Review the included files below, then request the complete ZIP.')}</p><div class="tags"><span class="tag">● Released</span><span class="tag">${(v.resources||[]).length || 'Free'} companion files</span><span class="tag">No payment needed</span></div><div class="video-embed">${embed(v)}</div><hr class="separator"><div class="inside-head"><h2>What's inside your ZIP?</h2><span>${(v.resources||[]).length || ''} FILES</span></div>${fileRows(v)}</div><div><aside class="panel aside"><div class="free">✦ Free companion materials</div><h2>Get the full resource pack.</h2><p>One ZIP with the companion material for this lesson. You'll enter your details only after clicking download.</p><button class="btn btn-primary" type="button" id="openDownload">↓ Download Resources</button><small>One quick form · Name and email required · Phone optional</small></aside><section class="panel feedback"><h3>Have a question or suggestion?</h3><p>Tell us privately what you would like to learn or what problem you're facing. Your message won't be visible to other viewers.</p><form id="feedbackForm"><label for="feedbackType">Message type</label><select name="feedback_type" id="feedbackType"><option value="question">Question about this video</option><option value="idea">Request a new topic</option><option value="issue">Problem with the resource</option><option value="other">Other feedback</option></select><label for="feedbackMessage">Your message *</label><textarea id="feedbackMessage" name="message" maxlength="1800" required placeholder="Share your question or idea..."></textarea><label for="feedbackName">Your name (optional)</label><input id="feedbackName" name="full_name" maxlength="100"/><label class="privacy-check"><input type="checkbox" name="privacy_consent" required/><span>I agree to the <a href="?privacy=1">privacy notice</a> for this private message.</span></label><button type="submit" class="btn btn-dark">Send private feedback</button><div id="feedbackStatus" role="status" aria-live="polite" class="form-note"></div></form></section></div></div></div></section>`;$('openDownload').addEventListener('click',openModal);$('feedbackForm').addEventListener('submit',submitFeedback);}
 function unavailable(){document.title='Resource not available | Digital Pathshala';$('app').innerHTML=`<section class="section"><div class="container"><div class="empty"><div class="empty-icon">🔒</div><h3>This resource is not available yet.</h3><p>If you arrived from an upcoming YouTube video link, the resources will appear only when that video has been released. No downloadable materials are public before then.</p><p style="margin-top:21px"><a href="?" class="btn btn-dark">Browse available resources ←</a></p></div></div></section>`;}
 function privacy(){document.title='Privacy notice | Digital Pathshala';$('app').innerHTML=`<section class="section"><div class="container"><a href="?" class="back">← Home</a><h1 style="font-size:36px">Privacy notice</h1><p style="max-width:800px;line-height:1.9;margin-top:16px;color:var(--mute)">When you request a resource, Digital Pathshala collects your name, email address, optional phone number, the resource you requested and your submission time in a private Google Sheet. We use these details to record your request and provide the download. Your optional private feedback is used to review questions and suggestions. Promotional updates are only selected through a separate optional checkbox. Information is not displayed in the public resource library.</p><p style="max-width:800px;line-height:1.9;margin-top:16px;color:var(--mute)">For questions about your submitted details, or to request correction or deletion, email <a href="mailto:aaryamang2008@gmail.com">aaryamang2008@gmail.com</a>. Digital Pathshala will complete and review its final retention policy and privacy notice before opening lead collection.</p></div></section>`;}
-function openModal(){if(!selected)return;const text=document.querySelector('#downloadModal p');if(text)text.textContent=selected.kind?'Enter your details to download this free '+selected.file_type+' file. Name and email are required; phone is optional.':"Enter your details to get this video's companion ZIP. Name and email are required; phone is optional.";const tag=document.querySelector('.modal-kicker');if(tag)tag.textContent=selected.kind?'FREE '+selected.kind.toUpperCase():'FREE VIDEO RESOURCE';$('downloadModal').hidden=false;$('downloadModal').querySelector('input[name=full_name]').focus();document.body.style.overflow='hidden';$('downloadForm').reset();$('modalStatus').textContent='';$('modalStatus').className='status-msg';$('fallbackDownload').classList.remove('show');}
+function openModal(){if(!selected)return;const text=document.querySelector('#downloadModal p');if(text)text.textContent=selected.kind?'Enter your details to download this free '+selected.file_type+' file. Name and email are required; phone is optional.':"Enter your details to get this video's companion ZIP. Name and email are required; phone is optional.";const tag=document.querySelector('.modal-kicker');if(tag)tag.textContent=selected.kind?'FREE '+selected.kind.toUpperCase():'FREE VIDEO RESOURCE';$('downloadModal').hidden=false;$('downloadModal').querySelector('input[name=full_name]').focus();document.body.style.overflow='hidden';$('downloadForm').reset();$('modalStatus').textContent='';$('modalStatus').className='status-msg';$('fallbackDownload').classList.remove('show');$('fallbackDownload').textContent='Download manually if it does not start';}
 function closeModal(){if(busy)return;$('downloadModal').hidden=true;document.body.style.overflow='';}
 function uuid(){if(crypto?.randomUUID)return crypto.randomUUID();const x=crypto.getRandomValues(new Uint8Array(16));x[6]=(x[6]&15)|64;x[8]=(x[8]&63)|128;const h=[...x].map(b=>b.toString(16).padStart(2,'0')).join('');return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;}
 function pageUrl(v){if(v.kind)return v.page_url;const url=new URL(location.href);url.search='?v='+encodeURIComponent(v.id);url.hash='';return url.href;}
 function commonPayload(v,action){const params=new URLSearchParams(location.search);return {request_id:uuid(),action,video_id:v.id,page_url:pageUrl(v),referrer:document.referrer||'',utm_source:params.get('utm_source')||'',utm_medium:params.get('utm_medium')||'',utm_campaign:params.get('utm_campaign')||'',website:'',privacy_consent:true};}
 function jsonp(args,timeout=8000){return new Promise((resolve,reject)=>{let done=false;const name='dpCallback'+Math.random().toString(36).slice(2,12);const script=document.createElement('script');const kill=()=>{script.remove();delete window[name];clearTimeout(timer);};const timer=setTimeout(()=>{if(!done){done=true;kill();reject(new Error('Confirmation service timed out.'));}},timeout);window[name]=data=>{if(done)return;done=true;kill();resolve(data)};script.onerror=()=>{if(done)return;done=true;kill();reject(new Error('Confirmation service not reachable.'))};script.src=CONFIG.appScript+'?'+new URLSearchParams({...args,callback:name,_t:Date.now()});document.head.appendChild(script);});}
-async function confirmedSubmit(payload){const response=await fetch(CONFIG.appScript,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});if(!response)throw new Error('Submission could not be sent.');for(let n=0;n<18;n++){await new Promise(r=>setTimeout(r,n===0?850:1100));const receipt=await jsonp({action:'receipt',request_id:payload.request_id});if(receipt.status==='ok' && receipt.video_id===payload.video_id && receipt.action===payload.action)return receipt;if(receipt.status==='error')throw new Error(receipt.message||'Form could not be saved.');if(receipt.status!=='pending')throw new Error('Unexpected confirmation response.')}throw new Error('Could not verify saving the form. Please try again.');}
+async function confirmedSubmit(payload){
+  // no-cors returns an opaque response, which is NOT proof the Sheet was written.
+  // Receipt verification is authoritative; transient JSONP errors must not
+  // cause a second request ID or an incorrect "not saved" message.
+  try {
+    await fetch(CONFIG.appScript,{
+      method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    });
+  } catch(error) {
+    const err=new Error('The submission connection failed; your details may not have been received.');
+    err.retryable=true;throw err;
+  }
+  let successfulLookups=0,networkFailures=0;
+  const started=Date.now();
+  for(let n=0;n<18 && Date.now()-started<35000;n++){
+    await new Promise(resolve=>setTimeout(resolve,n===0?900:Math.min(1100+Math.floor(n/5)*250,1650)));
+    let receipt;
+    try {
+      // Google ContentService redirects to a one-time googleusercontent URL;
+      // an occasional redirect failure is recoverable on a new GET.
+      receipt=await jsonp({action:'receipt',request_id:payload.request_id},4800);
+    } catch(error) {
+      networkFailures++;
+      if(networkFailures>=7 && successfulLookups===0)break;
+      continue;
+    }
+    successfulLookups++;
+    if(receipt.status==='ok'){
+      if(receipt.video_id===payload.video_id&&receipt.action===payload.action)return receipt;
+      throw new Error('The confirmation does not match this resource. Contact Digital Pathshala.');
+    }
+    if(receipt.status==='error')throw new Error(receipt.message||'The submission was rejected. Please check your details.');
+    if(receipt.status!=='pending')throw new Error('Unexpected confirmation response. Please try again.');
+  }
+  const error=new Error(successfulLookups
+    ? 'Your submission is still being processed. We could not confirm that it was saved.'
+    : 'The confirmation service could not be reached from this browser.');
+  error.retryable=true;
+  throw error;
+}
 function startDownload(url){const a=document.createElement('a');a.href=url;a.download=CONFIG.preview?'Digital_Pathshala_PREVIEW_Only.zip':url.split('/').pop().split('?')[0];a.rel='noopener';a.style.display='none';document.body.appendChild(a);a.click();a.remove();}
 function setBusy(v){busy=v;$('submitDownload').disabled=v;$('submitDownload').innerHTML=v?'<span class="spinner" aria-hidden="true"></span> Saving your request...':'Submit & Download ↓';$('closeDownload').disabled=v;}
-async function submitDownload(ev){ev.preventDefault();if(!selected||busy)return;const f=ev.currentTarget;if(!f.reportValidity())return;const d=new FormData(f),payload={...commonPayload(selected,'download'),full_name:String(d.get('full_name')||'').trim(),email:String(d.get('email')||'').trim(),phone:String(d.get('phone')||'').trim(),marketing_opt_in:d.has('marketing_opt_in')};setBusy(true);$('modalStatus').textContent='Submitting your request...';try{let receipt;if(CONFIG.preview){await new Promise(r=>setTimeout(r,500));receipt={status:'ok',video_id:selected.id,action:'download',download_url:CONFIG.demoZip};}else receipt=await confirmedSubmit(payload);const url=receipt.download_url;if(!url||(!CONFIG.preview&&!(selected.kind?validIndependentLink({...selected,resource_url:url}):validLink({...selected,resource_url:url}))))throw new Error('Download link not ready. Please contact Digital Pathshala.');$('modalStatus').className='status-msg form-success';$('modalStatus').textContent=CONFIG.preview?'Preview only: no information was saved. The example ZIP will download now.':'Your request is saved. Your file should download automatically.';const fallback=$('fallbackDownload');fallback.href=url;fallback.download=CONFIG.preview?'Digital_Pathshala_PREVIEW_Only.zip':(selected.kind?selected.file_name:selected.id+'.zip');fallback.classList.add('show');startDownload(url);f.querySelectorAll('input').forEach(x=>x.disabled=true);}catch(err){$('modalStatus').className='status-msg form-error';$('modalStatus').textContent=String(err.message||'Submission failed. Please retry.');}finally{setBusy(false);}}
-async function submitFeedback(ev){ev.preventDefault();const f=ev.currentTarget;if(!f.reportValidity()||!selected)return;const fd=new FormData(f),st=$('feedbackStatus');st.className='form-note';st.textContent='Sending your private message...';f.querySelector('button').disabled=true;try{if(!CONFIG.preview){let r=await confirmedSubmit({...commonPayload(selected,'feedback'),feedback_type:fd.get('feedback_type'),message:String(fd.get('message')||'').trim(),full_name:String(fd.get('full_name')||'').trim()});if(r.status!=='ok')throw new Error('Not saved');}else{await new Promise(r=>setTimeout(r,450));}st.className='form-note form-success';st.textContent=CONFIG.preview?'Preview only: message not sent or stored.':'Your private message has been recorded. Thank you!';f.reset();}catch(err){st.className='form-note form-error';st.textContent=String(err.message||'Please try again.');}finally{f.querySelector('button').disabled=false;}}
+async function submitDownload(ev){
+  ev.preventDefault();
+  if(!selected||busy)return;
+  const form=ev.currentTarget;
+  if(!form.reportValidity())return;
+  const fields=new FormData(form);
+  const values={
+    full_name:String(fields.get('full_name')||'').trim(),
+    email:String(fields.get('email')||'').trim(),
+    phone:String(fields.get('phone')||'').trim(),
+    marketing_opt_in:fields.has('marketing_opt_in')
+  };
+  const signature=JSON.stringify([selected.id,values]);
+  if(!pendingDownloadRequest||pendingDownloadRequest.signature!==signature){
+    pendingDownloadRequest={
+      signature,
+      payload:{...commonPayload(selected,'download'),...values}
+    };
+  }
+  const payload=pendingDownloadRequest.payload;
+  setBusy(true);
+  $('modalStatus').className='status-msg';
+  $('modalStatus').textContent='Saving your request and verifying confirmation...';
+  const fallback=$('fallbackDownload');
+  fallback.classList.remove('show');
+  try{
+    let receipt;
+    if(CONFIG.preview){
+      await new Promise(r=>setTimeout(r,450));
+      receipt={status:'ok',video_id:selected.id,action:'download',download_url:CONFIG.demoZip};
+    }else{
+      receipt=await confirmedSubmit(payload);
+    }
+    const url=receipt.download_url;
+    if(!url||(!CONFIG.preview&&!(selected.kind
+      ?validIndependentLink({...selected,resource_url:url})
+      :validLink({...selected,resource_url:url}))))
+      throw new Error('The download link is not ready. Please contact Digital Pathshala.');
+    $('modalStatus').className='status-msg form-success';
+    $('modalStatus').textContent=CONFIG.preview
+      ?'Preview only: no information was saved.'
+      :'Your request was verified and saved. Your download should begin automatically.';
+    fallback.href=url;
+    fallback.download=CONFIG.preview?'Digital_Pathshala_PREVIEW_Only.zip':
+      (selected.kind?selected.file_name:selected.id+'.zip');
+    fallback.textContent='Click here if your file did not download';
+    fallback.classList.add('show');
+    startDownload(url);
+    pendingDownloadRequest=null;
+    form.querySelectorAll('input').forEach(x=>x.disabled=true);
+  }catch(error){
+    $('modalStatus').className='status-msg form-error';
+    if(error.retryable){
+      // Only a public, checksum-published manifest URL can be used here.
+      // Never claim the submission was saved without a confirmed receipt.
+      const url=selected.resource_url;
+      const safe=selected.kind
+        ?validIndependentLink({...selected,resource_url:url})
+        :validLink({...selected,resource_url:url});
+      $('modalStatus').textContent=String(error.message||'Confirmation unavailable.')+
+        ' Your request may already have reached us. You may retry using the same request ID without a duplicate entry.';
+      if(safe){
+        fallback.href=url;
+        fallback.download=selected.kind?selected.file_name:selected.id+'.zip';
+        fallback.textContent='Download the resource directly (saving not confirmed)';
+        fallback.classList.add('show');
+      }
+    }else{
+      $('modalStatus').textContent=String(error.message||'Submission failed. Please check your details.');
+    }
+  }finally{setBusy(false);}
+}
+async function submitFeedback(ev){
+  ev.preventDefault();
+  const form=ev.currentTarget;
+  if(!form.reportValidity()||!selected)return;
+  const fields=new FormData(form),status=$('feedbackStatus');
+  const values={
+    feedback_type:fields.get('feedback_type'),
+    message:String(fields.get('message')||'').trim(),
+    full_name:String(fields.get('full_name')||'').trim()
+  };
+  const signature=JSON.stringify([selected.id,values]);
+  if(!pendingFeedbackRequest||pendingFeedbackRequest.signature!==signature){
+    pendingFeedbackRequest={
+      signature,
+      payload:{...commonPayload(selected,'feedback'),...values}
+    };
+  }
+  status.className='form-note';
+  status.textContent='Sending your private message and checking confirmation...';
+  form.querySelector('button').disabled=true;
+  try{
+    if(!CONFIG.preview){
+      const receipt=await confirmedSubmit(pendingFeedbackRequest.payload);
+      if(receipt.status!=='ok')throw new Error('Confirmation not received');
+    }else await new Promise(r=>setTimeout(r,450));
+    pendingFeedbackRequest=null;
+    status.className='form-note form-success';
+    status.textContent=CONFIG.preview
+      ?'Preview only: message not stored.'
+      :'Your private message was verified and recorded. Thank you!';
+    form.reset();
+  }catch(error){
+    status.className='form-note form-error';
+    status.textContent=String(error.message||'Please try again.')+
+      (error.retryable?' You can retry safely without creating a duplicate.':'');
+  }finally{form.querySelector('button').disabled=false;}
+}
 async function init(){
  const params=new URLSearchParams(location.search),id=params.get('v');
  const basePath=new URL('videos.json',document.baseURI).pathname.replace(/videos\.json$/,'');
