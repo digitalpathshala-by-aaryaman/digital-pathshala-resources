@@ -60,6 +60,32 @@ def verify_first_ebook():
                'ebook prelaunch page honestly holds pending download')
 
 
+
+def verify_second_ebook():
+    slug = 'the-hidden-switches-inside-chatgpt-gemini-claude-2026'
+    url = SITE + 'ebooks/' + slug + '/'
+    page = get(url, False)
+    expect('The Hidden Switches Inside ChatGPT' in page,
+           'second e-book permanent page responds')
+    rows = [v for v in get(SITE+'independent.json').get('resources', [])
+            if v.get('id') == 'ebook-' + slug]
+    if rows:
+        item = rows[0]
+        expect(item['page_url'] == url and item.get('status') == 'live',
+               'second e-book publicly listed with permanent URL')
+        req = urllib.request.Request(item['resource_url'],
+                   headers={'User-Agent': 'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(req, timeout=25) as response:
+            blob = response.read(1_200_000)
+        expect(len(blob) == 499431 and
+               hashlib.sha256(blob).hexdigest() ==
+               'f6d65036d58ed61eb70f92ec272ba4fb054a90605085dd928595b3e4dd0deafe',
+               'public second original PDF bytes match registered checksum')
+    else:
+        expect('Download is being activated.' in page,
+               'second e-book prelaunch page safely holds pending PDF')
+
+
 def main():
     failures = []
     checks = [
@@ -68,6 +94,7 @@ def main():
                              and v.get("configured") is True, "Apps Script v3.0 live with manifest configured")
         )(endpoint(action="health"))),
         ("First e-book permanent link and PDF state", verify_first_ebook),
+        ("Second e-book permanent link and PDF state", verify_second_ebook),
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),
