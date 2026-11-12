@@ -86,6 +86,28 @@ def verify_second_ebook():
                'second e-book prelaunch page safely holds pending PDF')
 
 
+
+def verify_third_ebook():
+    slug = 'let-ai-do-your-browser-work-while-you-watch-2026'
+    url = SITE + 'ebooks/' + slug + '/'
+    page = get(url, False)
+    expect('Let AI Do Your Browser Work' in page, 'third ebook permanent page loads')
+    rows = [v for v in get(SITE + 'independent.json').get('resources', [])
+            if v.get('id') == 'ebook-' + slug]
+    if rows:
+        item = rows[0]
+        expect(item.get('page_url') == url and item.get('status') == 'live',
+               'third ebook appears in public catalogue')
+        req = urllib.request.Request(item['resource_url'],
+                   headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(req, timeout=25) as response:
+            blob = response.read(1_200_000)
+        expect(len(blob)==648870 and hashlib.sha256(blob).hexdigest()=='85d56d8578f7e350b2b364c888bbcdec5018d1f5a0b54994bee0132c94d484bc',
+               'public third original PDF checksum matches uploaded document')
+    else:
+        expect('Download is being activated.' in page,
+               'third ebook safely withheld until exact PDF upload')
+
 def main():
     failures = []
     checks = [
@@ -95,6 +117,7 @@ def main():
         )(endpoint(action="health"))),
         ("First e-book permanent link and PDF state", verify_first_ebook),
         ("Second e-book permanent link and PDF state", verify_second_ebook),
+        ("Third e-book permanent link and PDF state", verify_third_ebook),
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),

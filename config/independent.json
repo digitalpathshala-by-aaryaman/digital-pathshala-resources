@@ -50,6 +50,32 @@
       "published_at_ist": "2026-11-12 00:00",
       "file_name": "Digital-Pathshala-Hidden-AI-Settings-2026.pdf",
       "sha256": "f6d65036d58ed61eb70f92ec272ba4fb054a90605085dd928595b3e4dd0deafe"
+    },
+    {
+      "kind": "ebook",
+      "slug": "let-ai-do-your-browser-work-while-you-watch-2026",
+      "title": "Let AI Do Your Browser Work While You Watch (2026)",
+      "description": "A free 17-page Digital Pathshala e-book with 12 practical Gemini in Chrome and Claude in Chrome workflows. Learn to compare browser tabs, summarise pages and videos, draft emails, work through forms, record repeatable browser tasks and schedule routines, with safety rules and a seven-day practice plan.",
+      "category": "AI Browser Automation",
+      "highlights": [
+        "12 practical browser AI workflows explained step by step",
+        "Gemini in Chrome: compare tabs, summarise webpages and videos",
+        "Generate Gmail drafts and work through forms with approval",
+        "Claude in Chrome: record, replay and schedule repeatable tasks",
+        "Examples for YouTube video scheduling and weekly price checks",
+        "Safety rules, copy-paste prompts and a seven-day practice plan"
+      ],
+      "cover_url": "https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/covers/let-ai-do-your-browser-work-while-you-watch-2026.svg",
+      "preview_images": [],
+      "preview_pages": [
+        2,
+        11,
+        16
+      ],
+      "approved": true,
+      "published_at_ist": "2026-11-12 00:00",
+      "file_name": "Digital-Pathshala-AI-in-Your-Browser-2026.pdf",
+      "sha256": "85d56d8578f7e350b2b364c888bbcdec5018d1f5a0b54994bee0132c94d484bc"
     }
   ]
 }
