@@ -80,3 +80,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - name: Verify published website and original e-book PDF (read-only)
+        run: python3 scripts/check_backend_health.py
