@@ -5,6 +5,7 @@ import html
 import json
 import re
 import shutil
+import subprocess
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -16,6 +17,42 @@ def slugify(title):
     slug=re.sub(r'[^a-z0-9]+','-',title.lower()).strip('-')
     if not slug or len(slug)>70: raise ValueError('Title cannot produce safe, short URL')
     return slug
+
+def build_pdf_previews(pdf, output, slug, base_url, selected_pages):
+    """Use the actual first page of an approved PDF as the cover.
+
+    When pdftoppm is present, also render selected sample pages. Failure to
+    render a preview cannot change or replace the downloadable original file.
+    """
+    if pdf.suffix.lower() != '.pdf' or not shutil.which('pdftoppm'):
+        return '', []
+    pages = [(1, 'cover')]
+    if isinstance(selected_pages, list):
+        pages += [(n, 'preview-' + str(n)) for n in selected_pages[:3]
+                  if type(n) is int and 1 < n <= 100]
+    folder = output / 'covers'
+    folder.mkdir(exist_ok=True)
+    cover_url, sample_urls = '', []
+    for page, suffix in pages:
+        stem = folder / (slug + '-' + suffix)
+        try:
+            result = subprocess.run([
+                'pdftoppm', '-f', str(page), '-l', str(page), '-singlefile',
+                '-scale-to', '1000', '-jpeg', '-jpegopt', 'quality=82',
+                str(pdf), str(stem)
+            ], capture_output=True, timeout=45, check=False)
+            image = stem.with_suffix('.jpg')
+            if result.returncode or not image.is_file():
+                continue
+            url = base_url + 'covers/' + image.name
+            if page == 1:
+                cover_url = url
+            else:
+                sample_urls.append(url)
+        except (OSError, subprocess.TimeoutExpired):
+            continue
+    return cover_url, sample_urls
+
 
 def publish(root, output, now, base_url):
     root,output=Path(root),Path(output)
@@ -57,6 +94,13 @@ def publish(root, output, now, base_url):
         previews=resource.get('preview_images',[])[:4]
         if not isinstance(previews,list) or any(not isinstance(p,str) or not p.startswith(base_url+'covers/') for p in previews):
             raise ValueError('Preview images must be hosted in the site covers folder')
+        # Prefer the actual PDF pages over a placeholder cover when available.
+        generated_cover, generated_previews = build_pdf_previews(
+            file, output, slug, base_url, resource.get('preview_pages', []))
+        if generated_cover:
+            cover = generated_cover
+        if generated_previews:
+            previews = generated_previews
         item={
             'preview_images':previews,
             'id':rid,'kind':kind,'slug':slug,'title':resource['title'],
