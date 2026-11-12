@@ -31,3 +31,11 @@
 .independent-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
 .independent-gallery-grid img{display:block;width:100%;max-height:250px;object-fit:contain;background:#fffdf7;border:1px solid var(--line);border-radius:11px}
 @media(max-width:680px){.independent-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Homepage discovery: one shared search above e-books and video resources */
+.library-search-wrap{background:#fff;border-bottom:1px solid var(--line);padding:29px 0 24px}
+.library-search-label{font:800 17px/1.4 Manrope,sans-serif;color:var(--navy);display:block;margin-bottom:12px}
+.library-search-input{width:min(100%,650px);display:block;font-size:14px;box-shadow:0 5px 15px #102a4309}
+.library-search-hint{font-size:12px;color:var(--mute);margin-top:9px;line-height:1.6}
+.video-filters-toolbar{justify-content:flex-end;margin-top:23px}
+@media(max-width:680px){.library-search-wrap{padding:23px 0 20px}.video-filters-toolbar{justify-content:flex-start}}
