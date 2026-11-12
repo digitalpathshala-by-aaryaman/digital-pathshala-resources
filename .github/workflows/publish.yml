@@ -6,6 +6,8 @@ on:
     paths:
       - 'site/**'
       - 'config/**'
+      - 'tests/**'
+      - 'docs/**'
       - 'scripts/**'
       - 'vault/**'
       - '.github/workflows/publish.yml'
