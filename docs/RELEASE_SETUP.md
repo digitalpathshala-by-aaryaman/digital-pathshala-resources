@@ -1,6 +1,6 @@
 # Digital Pathshala release setup
 
-The public resource count starts at **0**. The 90 prepared videos are internal registry records, **not** public downloads.
+The public resource count starts at **0**. The 90 prepared videos are internal registry records, **not** public downloads. There are 50 Shorts in a daily release calendar and 40 long videos held without dates.
 
 ## One-time setup
 
@@ -10,6 +10,14 @@ The public resource count starts at **0**. The 90 prepared videos are internal r
 4. Enter an official privacy request contact email in `config/site.json` under `privacy_contact_email`. The release script refuses to publish resources until this is done.
 5. In the existing private Google Sheet Apps Script, set Script Property `PUBLISHED_MANIFEST_URL` to `https://digitalpathshala-by-aaryaman.github.io/digital-pathshala-resources/videos.json`; then check `setupSheets()` and deployment.
 6. Run the **Publish Digital Pathshala Resources** GitHub Actions workflow once to deploy the empty site. Scheduled builds repeat every 15 minutes (best effort).
+
+## Current Shorts schedule
+
+- Shorts **short-s01** through **short-s50** have consecutive **earliest-eligible release dates**, one per calendar day from **16 November 2026 to 4 January 2027**.
+- The time `00:00` IST is a date-only gate, **not** a claim about the video's upload time. The corresponding public YouTube video's exact ID and a verified public status are still required before a resource is released.
+- The 50 Shorts dates are approved; their `youtube_id` fields are currently **empty**. They will remain unavailable until those IDs, the YouTube API key, and resource vault are configured.
+- All **40 full-length videos** have **no release dates** and remain `approved: false`. The previously tentative long-video dates have been removed.
+- The website itself can be deployed now with 0 published resources. The repository owner must activate **Settings → Pages → GitHub Actions** (the connected GitHub integration cannot change Pages settings).
 
 ## Adding videos
 
