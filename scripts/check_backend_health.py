@@ -4,6 +4,7 @@
 No actual visitor names, test submissions, or private data are created.
 """
 import json
+import hashlib
 import sys
 import urllib.parse
 import urllib.request
@@ -35,6 +36,30 @@ def expect(condition, label):
     print("PASS:", label)
 
 
+def verify_first_ebook():
+    slug = '10-hidden-ai-mistakes-nobody-warns-you-about-2026'
+    url = SITE + 'ebooks/' + slug + '/'
+    page = get(url, False)
+    expect('10 Hidden AI Mistakes' in page, 'first e-book permanent page responds')
+    manifest = get(SITE + 'independent.json')
+    rows = [v for v in manifest.get('resources', [])
+            if v.get('id') == 'ebook-' + slug]
+    if rows:
+        item = rows[0]
+        expect(item['page_url'] == url and item.get('status') == 'live',
+               'first e-book publicly listed with permanent URL')
+        request = urllib.request.Request(item['resource_url'],
+                   headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+        with urllib.request.urlopen(request, timeout=25) as response:
+            blob = response.read(1_200_000)
+        expect(hashlib.sha256(blob).hexdigest() ==
+               '33f22832b61efde560ccedcf1ade92fc927145939b2d0905f98802144ed505d9',
+               'public original PDF bytes match registered checksum')
+    else:
+        expect('Download is being activated.' in page,
+               'ebook prelaunch page honestly holds pending download')
+
+
 def main():
     failures = []
     checks = [
@@ -42,6 +67,7 @@ def main():
             lambda v: expect(v.get("status") == "ok" and v.get("version") == "3.0"
                              and v.get("configured") is True, "Apps Script v3.0 live with manifest configured")
         )(endpoint(action="health"))),
+        ("First e-book permanent link and PDF state", verify_first_ebook),
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),
