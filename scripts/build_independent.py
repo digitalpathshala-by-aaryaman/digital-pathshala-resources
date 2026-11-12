@@ -54,7 +54,11 @@ def publish(root, output, now, base_url):
         cover=resource.get('cover_url','')
         if cover and not cover.startswith(base_url+'covers/'):
             raise ValueError('Cover must be hosted under the site covers folder')
+        previews=resource.get('preview_images',[])[:4]
+        if not isinstance(previews,list) or any(not isinstance(p,str) or not p.startswith(base_url+'covers/') for p in previews):
+            raise ValueError('Preview images must be hosted in the site covers folder')
         item={
+            'preview_images':previews,
             'id':rid,'kind':kind,'slug':slug,'title':resource['title'],
             'category':resource.get('category','General'),
             'description':resource.get('description',''),
