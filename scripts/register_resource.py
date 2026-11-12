@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--category',default='General')
     parser.add_argument('--highlight',action='append',default=[])
     parser.add_argument('--cover-url',default='')
+    parser.add_argument('--preview-url',action='append',default=[],help='Published sample image URL under /covers/')
     parser.add_argument('--slug',default='')
     parser.add_argument('--publish',action='store_true',help='Required: confirms immediate PUBLIC publication')
     args=parser.parse_args()
@@ -38,7 +39,7 @@ def main():
     data['resources'].append({
         'kind':args.kind,'slug':slug,'title':args.title,'description':args.description,
         'category':args.category,'highlights':args.highlight[:8],
-        'cover_url':args.cover_url,'approved':True,'published_at_ist':stamp,
+        'cover_url':args.cover_url,'preview_images':args.preview_url[:4],'approved':True,'published_at_ist':stamp,
         'file_name':args.file.name,'sha256':hashlib.sha256(destination.read_bytes()).hexdigest()
     })
     config_path.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
