@@ -10,6 +10,7 @@ import json
 import re
 import sys
 import urllib.request
+import urllib.parse
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -138,9 +139,34 @@ def run(root=ROOT, now=None, getter=get_text):
         raise ValueError('Unexpected configured YouTube channel handle')
     channel_id = site.get('youtube_channel_id', '')
     if not CHANNEL_ID.fullmatch(channel_id):
-        channel_id = discover_channel_id(getter(home_url))
+        try:
+            channel_id = discover_channel_id(getter(home_url))
+        except Exception as ex:
+            print('Channel handle fetch failed; trying the public trailer:', type(ex).__name__)
+            channel_id = ''
+    # Fallback to the channel trailer's YouTube oEmbed author_url.
+    # This is public metadata; no Google or YouTube API key is involved.
     if not channel_id:
-        raise RuntimeError('Cannot identify channel from the public YouTube page')
+        trailer = site.get('channel_trailer_video_id', '')
+        if YOUTUBE_ID.fullmatch(trailer):
+            try:
+                url = 'https://www.youtube.com/oembed?url=' + urllib.parse.quote(
+                    'https://www.youtube.com/watch?v=' + trailer, safe=''
+                ) + '&format=json'
+                meta = json.loads(getter(url))
+                author = meta.get('author_name', '').casefold()
+                author_url = meta.get('author_url', '')
+                if 'digital pathshala' in author and 'aaryaman' in author and author_url.startswith('https://www.youtube.com/'):
+                    match = re.search(r'/channel/(UC[A-Za-z0-9_-]{22})', author_url)
+                    if match:
+                        channel_id = match.group(1)
+                    else:
+                        home_url = author_url.rstrip('/')
+                        channel_id = discover_channel_id(getter(home_url))
+            except Exception as ex:
+                print('Public trailer fallback unavailable:', type(ex).__name__)
+    if not CHANNEL_ID.fullmatch(channel_id):
+        raise RuntimeError('Cannot identify the official channel from public YouTube metadata')
     feed = getter('https://www.youtube.com/feeds/videos.xml?channel_id=' + channel_id)
     entries = parse_feed(feed, channel_id)
     try:
