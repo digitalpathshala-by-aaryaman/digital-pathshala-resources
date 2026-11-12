@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1040" viewBox="0 0 800 1040" role="img" aria-label="Digital Pathshala free e-book cover: 10 Hidden AI Mistakes Nobody Warns You About">
+<defs><linearGradient id="bg" x2=".9" y2="1"><stop stop-color="#182866"/><stop offset="1" stop-color="#253875"/></linearGradient></defs>
+<rect width="800" height="1040" rx="18" fill="url(#bg)"/>
+<g fill="#3b4b7c" opacity=".45"><path d="M400 710 L-80 -50 L-20 -50Z M400 710 L60 -50 L130 -50Z M400 710 L220 -50 L280 -50Z M400 710 L390 -50 L455 -50Z M400 710 L555 -50 L620 -50Z M400 710 L720 -50 L795 -50Z M400 710 L880 160 L880 225Z"/></g>
+<circle cx="85" cy="80" r="27" fill="#fffbd9"/><path d="M65 95 L84 57 L106 95 Z" fill="#243772"/><path d="M77 92 L87 77 L97 92Z" fill="#ffde58"/>
+<g font-family="Arial,Helvetica,sans-serif"><text x="130" y="75" font-weight="700" font-size="24" fill="#ffffff">Digital Pathshala</text><text x="130" y="103" font-size="16" fill="#d8dff2">by Aaryaman · AI + Excel for real work</text>
+<rect x="578" y="54" width="170" height="32" rx="16" fill="#ffe56a"/><text x="663" y="76" font-size="16" font-weight="700" text-anchor="middle" fill="#23346b">FREE EBOOK · 2026</text>
+<text x="60" y="234" font-size="20" font-weight="700" letter-spacing="2" fill="#ffe56a">WHAT THE RESEARCH FOUND</text><text x="60" y="264" font-size="17" font-weight="700" letter-spacing="2" fill="#ffe56a">WHAT TO DO ABOUT IT</text>
+<text x="58" y="359" font-size="70" font-weight="800" fill="#ffffff">10 hidden</text><text x="58" y="441" font-size="70" font-weight="800" fill="#ffffff">AI mistakes</text>
+<text x="58" y="524" font-size="70" font-weight="800" fill="#ffe56a">nobody warns</text><text x="58" y="606" font-size="70" font-weight="800" fill="#ffe56a">you about</text>
+<text x="60" y="657" font-size="21" fill="#e2e9f8">Ten researched AI behaviours, two-minute tests,</text><text x="60" y="688" font-size="21" fill="#e2e9f8">and a practical fix for each one.</text>
+<g fill="none" stroke="#ffdc69" stroke-width="2"><rect x="58" y="755" width="207" height="130" rx="11"/><rect x="295" y="755" width="207" height="130" rx="11"/><rect x="532" y="755" width="208" height="130" rx="11"/></g>
+<g fill="#ffe56a" font-size="42" font-weight="800"><text x="73" y="817">46%</text><text x="310" y="817">39%</text><text x="547" y="817">61%</text></g>
+<g fill="#ecf0f9" font-size="16"><text x="73" y="849">answers flipped</text><text x="310" y="849">multi-turn drop</text><text x="547" y="849">AI detector</text><text x="547" y="870">false flags</text></g>
+<path d="M60 952 H740" stroke="#8994ba" opacity=".7"/><text x="60" y="985" font-size="17" fill="#dce3f2">Includes the Fix Kit: 10 prompts and checklists</text></g>
+</svg>
