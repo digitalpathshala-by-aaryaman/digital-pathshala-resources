@@ -54,6 +54,10 @@ jobs:
         env:
           DP_VAULT_PASSPHRASE: ${{ secrets.DP_VAULT_PASSPHRASE }}
         run: python3 scripts/diagnose_video_release.py
+      - name: Inspect public Shorts metadata (one-time RSS fallback probe)
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[shorts-probe]')
+        continue-on-error: true
+        run: python3 scripts/inspect_public_shorts.py
       - name: Discover public Shorts without a YouTube API key
         run: python3 scripts/discover_shorts.py
       - name: Persist confirmed video links for future releases
