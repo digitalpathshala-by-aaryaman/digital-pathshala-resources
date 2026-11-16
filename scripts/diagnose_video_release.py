@@ -22,15 +22,44 @@ print('CHECK: local time:',now.strftime('%Y-%m-%d %H:%M %Z'))
 print('CHECK: approved Shorts:',sum(s.get('type')=='short' and s.get('approved') is True for s in PLAN))
 print('CHECK: due Shorts:',','.join(s['id'] for s in PLAN if s.get('type')=='short' and s.get('approved') is True and s.get('release_at_ist') and now>=dt.datetime.strptime(s['release_at_ist'],'%Y-%m-%d %H:%M').replace(tzinfo=IST)) or 'none')
 print('CHECK: public YouTube links discovered:',len(DISCOVERED))
-print('CHECK: encrypted vault archives:',len(list((ROOT/'vault').glob('*.zip.enc'))))
+chunk_path=ROOT/'vault'/'chunks'
+chunk_manifest=chunk_path/'manifest.json'
+sealed_archive_files=list((ROOT/'vault').glob('*.zip.enc'))
+encrypted_chunk_files=sorted(chunk_path.glob('encpart-*.bin'))
+print('CHECK: sealed vault files:',len(sealed_archive_files),'encrypted parts:',len(encrypted_chunk_files))
+def verify_ciphertext():
+    if sealed_archive_files:
+        return True
+    if not chunk_manifest.exists():
+        return False
+    manifest=json.loads(chunk_manifest.read_text(encoding='utf-8'))
+    expected_count=manifest['chunks']
+    expected_size=manifest['encrypted_file_bytes']
+    chunk_size=manifest['chunk_bytes']
+    if len(encrypted_chunk_files) != expected_count:
+        return False
+    size=0
+    sha=hashlib.sha256()
+    for index in range(1,expected_count+1):
+        p=chunk_path/('encpart-%03d.bin' % index)
+        if not p.is_file():
+            return False
+        b=p.read_bytes()
+        expected=min(chunk_size,expected_size-(index-1)*chunk_size)
+        if len(b)!=expected:
+            return False
+        size+=len(b)
+        sha.update(b)
+    return size==expected_size and sha.hexdigest()==manifest['encrypted_file_sha256']
+
+ciphertext_verified=verify_ciphertext()
+print('CHECK: encrypted vault archive integrity:', 'PASS' if ciphertext_verified else 'NOT READY')
 print('CHECK: vault passphrase configured:',bool(os.environ.get('DP_VAULT_PASSPHRASE')))
 
 due_ids = [v['id'] for v in PLAN if v.get('type')=='short' and v.get('approved') is True
            and v.get('release_at_ist') and now >=
            dt.datetime.strptime(v['release_at_ist'],'%Y-%m-%d %H:%M').replace(tzinfo=IST)]
-encrypted_files = list((ROOT/'vault').glob('*.zip.enc'))
-encrypted_chunks = list((ROOT/'vault'/'chunks').glob('encpart-*.bin'))
-has_archive = bool(encrypted_files) or len(encrypted_chunks)==44
+has_archive = ciphertext_verified
 has_passphrase = bool(os.environ.get('DP_VAULT_PASSPHRASE'))
 missing = []
 if due_ids and not has_archive and not (ROOT/'released_source'/'short-s01.zip').exists():
