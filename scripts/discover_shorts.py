@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import datetime as dt
 import difflib
+import html
 import json
 import re
 import sys
@@ -97,6 +98,35 @@ def title_score(a, b):
     common = len(aa & bb)
     overlap = common / max(1, min(len(aa), len(bb)))
     return max(ratio, overlap if common >= 3 else 0.0)
+
+
+
+def verified_shorts_entries(page_html, expected_channel_id, getter, max_checks=20):
+    """Fallback: require official Shorts listing AND the video's own channel/date/title metadata."""
+    ids = []
+    for match in re.finditer(r'shorts-shelf-item-([A-Za-z0-9_-]{11})', page_html):
+        if match.group(1) not in ids:
+            ids.append(match.group(1))
+    if not ids:
+        ids = list(shorts_page_ids(page_html))
+    result = []
+    for video_id in ids[:max_checks]:
+        try:
+            page = getter('https://www.youtube.com/shorts/' + video_id)
+            channel = re.search(r'"externalChannelId"\s*:\s*"(UC[A-Za-z0-9_-]{22})"', page)
+            stamp = re.search(r'"publishDate"\s*:\s*"([^"]+)"', page)
+            title = re.search(r'<meta\s+[^>]*property="og:title"[^>]*content="([^"]+)"', page)
+            if not channel or channel.group(1) != expected_channel_id or not stamp or not title:
+                continue
+            when = dt.datetime.fromisoformat(stamp.group(1).replace('Z', '+00:00'))
+            if when.tzinfo is None:
+                continue
+            result.append({'id': video_id, 'title': html.unescape(title.group(1)),
+                           'published_utc': when.astimezone(dt.timezone.utc).isoformat(),
+                           'when': when.astimezone(IST)})
+        except (OSError, ValueError, TimeoutError) as exc:
+            print('Short metadata temporarily unavailable:', video_id, type(exc).__name__)
+    return result, set(ids)
 
 
 def choose_candidate(video, feed_entries, shorts_ids, used_ids, now):
