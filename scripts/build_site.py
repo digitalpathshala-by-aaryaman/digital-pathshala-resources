@@ -88,7 +88,8 @@ def build(root=ROOT, output=None, now=None, public_ids=None):
         youtube_id = proof.get("youtube_id", "") if v.get("type") == "short" else ""
         if (v.get("approved") is True and due(v.get("release_at_ist"), now)
                 and YOUTUBE_ID.fullmatch(youtube_id)
-                and proof.get("proof", "").startswith("public-channel-feed")):
+                and (proof.get("proof", "").startswith("public-channel-feed")
+                     or proof.get("proof", "") == "verified-shorts-page-channel-and-timestamp")):
             due_videos.append({**v, "youtube_id": youtube_id})
     if not site.get("privacy_contact_email") or "@" not in site["privacy_contact_email"]:
         print("Privacy contact missing; holding all releases.", file=sys.stderr)
