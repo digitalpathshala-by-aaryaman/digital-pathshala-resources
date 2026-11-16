@@ -33,10 +33,40 @@ def due(value, now):
         return False
 
 def open_batches(root, temp):
+    # Fail closed: without the private repository secret, do not decrypt or
+    # expose the 50 future approved resources from this encrypted archive.
     if not os.getenv("DP_VAULT_PASSPHRASE", ""):
         return []
+    archive_paths = sorted((root / "vault").glob("*.zip.enc"))
+    chunk_dir = root / "vault" / "chunks"
+    if (chunk_dir / "manifest.json").exists():
+        manifest = load(chunk_dir / "manifest.json")
+        count = manifest["chunks"]
+        size = manifest["encrypted_file_bytes"]
+        digest = manifest["encrypted_file_sha256"]
+        chunk_bytes = manifest["chunk_bytes"]
+        if count != 44 or size != 11504144 or chunk_bytes != 262144:
+            raise ValueError("Unexpected sealed video vault chunk metadata")
+        if archive_paths:
+            raise ValueError("Encrypted archive staged twice, refusing duplicate packs")
+        assembled = temp / "sealed-batch-001.zip.enc"
+        h = hashlib.sha256()
+        length = 0
+        with assembled.open("wb") as out:
+            for i in range(1, count + 1):
+                source = chunk_dir / ("encpart-%03d.bin" % i)
+                chunk = source.read_bytes()
+                expected = min(chunk_bytes, size - (i - 1) * chunk_bytes)
+                if len(chunk) != expected:
+                    raise ValueError("Encrypted chunk missing or incomplete: %03d" % i)
+                h.update(chunk)
+                length += len(chunk)
+                out.write(chunk)
+        if length != size or h.hexdigest() != digest:
+            raise ValueError("Sealed encrypted archive SHA-256 mismatch")
+        archive_paths.append(assembled)
     archives = []
-    for i, path in enumerate(sorted((root / "vault").glob("*.zip.enc"))):
+    for i, path in enumerate(archive_paths):
         output = temp / ("batch-%04d.zip" % i)
         proc = subprocess.run(
             ["openssl", "enc", "-d", "-aes-256-cbc", "-pbkdf2", "-iter", "200000",
@@ -44,7 +74,7 @@ def open_batches(root, temp):
             env=os.environ, capture_output=True
         )
         if proc.returncode:
-            raise RuntimeError("Encrypted batch could not be decrypted: " + path.name)
+            raise RuntimeError("Encrypted video vault decryption failed; verify private key")
         archives.append(zipfile.ZipFile(output))
     return archives
 

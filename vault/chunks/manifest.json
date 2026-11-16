@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "encryption": "openssl aes-256-cbc pbkdf2 sha256 200000 iterations",
+  "encrypted_archive_filename": "batch-001.zip.enc",
+  "encrypted_file_bytes": 11504144,
+  "encrypted_file_sha256": "57939765b5aee2e2cf767b5da828a8bda00d325ba9172ade3aaa136e0f221a20",
+  "chunk_bytes": 262144,
+  "chunks": 44
+}

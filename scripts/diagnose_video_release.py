@@ -29,9 +29,11 @@ due_ids = [v['id'] for v in PLAN if v.get('type')=='short' and v.get('approved')
            and v.get('release_at_ist') and now >=
            dt.datetime.strptime(v['release_at_ist'],'%Y-%m-%d %H:%M').replace(tzinfo=IST)]
 encrypted_files = list((ROOT/'vault').glob('*.zip.enc'))
+encrypted_chunks = list((ROOT/'vault'/'chunks').glob('encpart-*.bin'))
+has_archive = bool(encrypted_files) or len(encrypted_chunks)==44
 has_passphrase = bool(os.environ.get('DP_VAULT_PASSPHRASE'))
 missing = []
-if due_ids and not encrypted_files:
+if due_ids and not has_archive and not (ROOT/'released_source'/'short-s01.zip').exists():
     missing.append('Encrypted ZIP batch is absent from vault/')
 if due_ids and not has_passphrase:
     missing.append('GitHub Actions secret DP_VAULT_PASSPHRASE is not configured')
@@ -47,7 +49,7 @@ if summary_file:
         summary.write('### Digital Pathshala Shorts readiness\n\n')
         summary.write('- Due Short IDs: '+(', '.join(due_ids) or 'None')+'\n')
         summary.write('- YouTube IDs verified: '+str(len(DISCOVERED))+'\n')
-        summary.write('- Encrypted resource archive present: '+str(bool(encrypted_files))+'\n')
+        summary.write('- Encrypted resource archive present: '+str(has_archive)+'\n')
         summary.write('- Private decryption secret configured: '+str(has_passphrase)+'\n')
         summary.write('- Status: '+('ON HOLD — '+ '; '.join(missing) if missing else 'Await build verification')+'\n\n')
 
