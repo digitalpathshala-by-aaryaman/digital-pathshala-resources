@@ -102,11 +102,18 @@ def build(root=ROOT, output=None, now=None, public_ids=None):
         archives = open_batches(root, Path(temp)) if ready else []
         for v in ready:
             match = find_zip(archives, v["id"])
-            if not match:
-                print("Encrypted resource pack missing; holding", v["id"], file=sys.stderr)
-                continue
-            archive, member = match
-            blob = archive.read(member)
+            if match:
+                archive, member = match
+                blob = archive.read(member)
+            else:
+                # An already released pack may be staged independently when the
+                # encrypted all-video vault has not been connected. Git history
+                # must never contain a future or unverified plaintext pack.
+                released = root / "released_source" / (v["id"] + ".zip")
+                if not released.is_file():
+                    print("Encrypted resource pack missing; holding", v["id"], file=sys.stderr)
+                    continue
+                blob = released.read_bytes()
             if hashlib.sha256(blob).hexdigest().lower() != v["sha256"].lower():
                 raise ValueError("Resource SHA mismatch: " + v["id"])
             if not zipfile.is_zipfile(io.BytesIO(blob)):
