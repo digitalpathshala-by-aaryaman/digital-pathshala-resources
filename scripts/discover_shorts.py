@@ -197,13 +197,37 @@ def run(root=ROOT, now=None, getter=get_text):
                 print('Public trailer fallback unavailable:', type(ex).__name__)
     if not CHANNEL_ID.fullmatch(channel_id):
         raise RuntimeError('Cannot identify the official channel from public YouTube metadata')
-    feed = getter('https://www.youtube.com/feeds/videos.xml?channel_id=' + channel_id)
-    entries = parse_feed(feed, channel_id)
+    # Avoid external requests until an approved Short is due and still unmapped.
+    pending_due = []
+    for item in plan:
+        if item.get('type') != 'short' or item.get('approved') is not True or item['id'] in already:
+            continue
+        try:
+            when = dt.datetime.strptime(item['release_at_ist'], '%Y-%m-%d %H:%M').replace(tzinfo=IST)
+            if now >= when:
+                pending_due.append(item)
+        except (TypeError, ValueError, KeyError):
+            continue
+    if not pending_due:
+        print('Keyless discovery: no due unmapped Shorts; total', len(already))
+        return []
     try:
-        short_ids = shorts_page_ids(getter(home_url + '/shorts'))
+        public_page = getter(home_url + '/shorts')
     except Exception as ex:
-        print('Shorts tab unavailable; requiring strong title evidence:', type(ex).__name__)
-        short_ids = set()
+        print('Official Shorts tab unavailable:', type(ex).__name__)
+        public_page = ''
+    short_ids = shorts_page_ids(public_page)
+    fallback = False
+    try:
+        feed = getter('https://www.youtube.com/feeds/videos.xml?channel_id=' + channel_id)
+        entries = parse_feed(feed, channel_id)
+    except Exception as ex:
+        fallback = True
+        print('RSS unavailable; using verified public Shorts video metadata:', type(ex).__name__)
+        if not public_page:
+            return []
+        entries, short_ids = verified_shorts_entries(public_page, channel_id, getter)
+        print('Verified', len(entries), 'official Short video pages from', len(short_ids), 'listing IDs')
     additions = []
     for item in sorted(plan, key=lambda v: v.get('release_at_ist', '')):
         if item['id'] in already or item.get('type') != 'short' or not item.get('release_at_ist'):
@@ -215,7 +239,8 @@ def run(root=ROOT, now=None, getter=get_text):
                 'published_at_utc': match['published_utc'],
                 'discovered_at_utc': now.astimezone(dt.timezone.utc).isoformat(),
                 'feed_title': match['title'], 'channel_id': channel_id,
-                'proof': 'public-channel-feed' + ('-and-shorts-tab' if match['id'] in short_ids else '-title-match')
+                'proof': ('verified-shorts-page-channel-and-timestamp' if fallback else
+                          'public-channel-feed' + ('-and-shorts-tab' if match['id'] in short_ids else '-title-match'))
             }
             known_ids.add(match['id'])
             additions.append(item['id'])
