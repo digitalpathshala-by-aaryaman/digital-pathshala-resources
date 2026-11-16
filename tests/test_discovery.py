@@ -51,6 +51,61 @@ class DiscoveryTests(unittest.TestCase):
             data = json.loads((root/'config/discovered.json').read_text())
             self.assertEqual(data['shorts']['short-s01']['youtube_id'], VID)
 
+    def test_verified_public_shorts_without_rss(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root/'config').mkdir()
+            (root/'config/site.json').write_text(json.dumps({
+                'channel_url':'https://www.youtube.com/@DigitalPathshalabyAaryaman',
+                'youtube_channel_id': CID
+            }))
+            (root/'config/videos.json').write_text(json.dumps({'videos':[{
+                'id':'short-s01',
+                'title':'Weak prompt vs strong prompt in 30 seconds',
+                'type':'short','approved':True,
+                'release_at_ist':'2026-11-16 11:00'
+            }]}))
+            def getter(url):
+                if 'videos.xml' in url:
+                    raise OSError('YouTube RSS 404')
+                if url.endswith('/shorts'):
+                    return 'shorts-shelf-item-' + VID
+                if url.endswith('/shorts/' + VID):
+                    return ('"externalChannelId":"' + CID + '",' +
+                            '"publishDate":"2026-11-15T21:30:20-08:00",' +
+                            '<meta property="og:title" content="ChatGPT Prompt Trick: Get Better Answers in 30 Seconds">')
+                return '"externalId":"' + CID + '"'
+            now = dt.datetime(2026,11,16,12,0,tzinfo=IST)
+            self.assertEqual(disc.run(root,now,getter),['short-s01'])
+            found=json.loads((root/'config/discovered.json').read_text())['shorts']['short-s01']
+            self.assertEqual(found['youtube_id'],VID)
+            self.assertEqual(found['proof'],'verified-shorts-page-channel-and-timestamp')
+            self.assertEqual(disc.run(root,now,getter),[])
+
+    def test_wrong_channel_is_never_mapped_by_public_page_fallback(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp)
+            (root/'config').mkdir()
+            (root/'config/site.json').write_text(json.dumps({
+                'channel_url':'https://www.youtube.com/@DigitalPathshalabyAaryaman',
+                'youtube_channel_id': CID
+            }))
+            (root/'config/videos.json').write_text(json.dumps({'videos':[{
+                'id':'short-s01','title':'Weak prompt','type':'short','approved':True,
+                'release_at_ist':'2026-11-16 11:00'
+            }]}))
+            def getter(url):
+                if 'videos.xml' in url: raise OSError('RSS unavailable')
+                if url.endswith('/shorts'): return 'shorts-shelf-item-' + VID
+                if url.endswith('/shorts/' + VID):
+                    return ('"externalChannelId":"UC'+'Z'*22+'",' +
+                            '"publishDate":"2026-11-16T11:00:20+05:30",' +
+                            '<meta property="og:title" content="Weak prompt">')
+                return '"externalId":"' + CID + '"'
+            now=dt.datetime(2026,11,16,12,tzinfo=IST)
+            self.assertEqual(disc.run(root,now,getter),[])
+            self.assertFalse((root/'config/discovered.json').exists())
+
     def test_no_unapproved_release(self):
         v = {'id':'short-s01','title':'Strong prompt tips','type':'short','approved':False,'release_at_ist':'2026-11-16 11:00'}
         self.assertIsNone(disc.choose_candidate(v, disc.parse_feed(FEED, CID), {VID}, set(), dt.datetime(2026,11,16,12,tzinfo=IST)))
