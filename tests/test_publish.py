@@ -32,9 +32,20 @@ class PublishSafetyTests(unittest.TestCase):
         self.assertEqual(len(longs), 40)
         self.assertTrue(all(v["release_at_ist"] == "" and v["approved"] is False for v in longs))
 
-    def test_no_keyless_release_without_a_confirmed_feed_match(self):
-        proof = json.loads((ROOT / "config/discovered.json").read_text())
-        self.assertEqual(proof["shorts"], {})
+    def test_discovered_shorts_have_verified_public_channel_proof(self):
+        discovery = json.loads((ROOT / "config/discovered.json").read_text())["shorts"]
+        site = json.loads((ROOT / "config/site.json").read_text())
+        plan = json.loads((ROOT / "config/videos.json").read_text())["videos"]
+        eligible = {v["id"] for v in plan if v["type"] == "short" and v["approved"]}
+        for resource_id, proof in discovery.items():
+            self.assertIn(resource_id, eligible)
+            self.assertRegex(proof["youtube_id"], r"^[A-Za-z0-9_-]{11}$")
+            self.assertEqual(proof["channel_id"], site["youtube_channel_id"])
+            self.assertTrue(
+                proof["proof"].startswith("public-channel-feed") or
+                proof["proof"] == "verified-shorts-page-channel-and-timestamp"
+            )
+            self.assertTrue(proof.get("published_at_utc"))
 
     def test_shorts_without_youtube_ids_remain_unpublished(self):
         with tempfile.TemporaryDirectory() as temp:
