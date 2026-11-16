@@ -5,6 +5,7 @@ No actual visitor names, test submissions, or private data are created.
 """
 import json
 import hashlib
+from pathlib import Path
 import sys
 import urllib.parse
 import urllib.request
@@ -189,6 +190,33 @@ def verify_ebook_8():
         expect('Download is being activated.' in page,
                'ebook 8 correctly withholds download until original PDF upload')
 
+def verify_published_video_download():
+    public = get(SITE + 'videos.json').get('videos', [])
+    plan = {v['id']: v for v in json.loads((Path(__file__).resolve().parents[1] /
+            'config/videos.json').read_text())['videos']}
+    expected_releases = [p.stem for p in
+          (Path(__file__).resolve().parents[1] / 'released_source').glob('short-s*.zip')]
+    visible = {v['id'] for v in public}
+    for resource_id in expected_releases:
+        expect(resource_id in visible, 'released video present in live manifest: ' + resource_id)
+    if not public:
+        expect(not expected_releases, 'video catalogue safely empty before publication')
+        return
+    recent = public[0]
+    resource_id = recent['id']
+    assert resource_id in plan, 'Unknown public video ID'
+    original = plan[resource_id]
+    expect(original['approved'] and recent['status']=='live' and
+           recent['resource_url']==SITE+'resources/'+resource_id+'.zip',
+           'latest Short uses the verified permanent resource URL')
+    request = urllib.request.Request(recent['resource_url'],
+              headers={'User-Agent':'DigitalPathshalaLiveSmokeTest/3.0'})
+    with urllib.request.urlopen(request,timeout=25) as response:
+        original_zip=response.read(2000000)
+    expect(hashlib.sha256(original_zip).hexdigest()==original['sha256'],
+           'latest published Short ZIP matches the original checksum')
+
+
 def main():
     failures = []
     checks = [
@@ -207,6 +235,7 @@ def main():
         ("GitHub Pages home", lambda: expect(
             "Digital Pathshala" in get(SITE, False) and
             "assets/site.js" in get(SITE, False), "public GitHub Pages homepage responds")),
+        ("Latest video resource download integrity", verify_published_video_download),
         ("Live video manifest", lambda: (
             lambda j: expect(isinstance(j.get("videos"), list), "videos.json valid public catalogue")
         )(get(SITE + "videos.json"))),
