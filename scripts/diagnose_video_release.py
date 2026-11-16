@@ -24,6 +24,33 @@ print('CHECK: due Shorts:',','.join(s['id'] for s in PLAN if s.get('type')=='sho
 print('CHECK: public YouTube links discovered:',len(DISCOVERED))
 print('CHECK: encrypted vault archives:',len(list((ROOT/'vault').glob('*.zip.enc'))))
 print('CHECK: vault passphrase configured:',bool(os.environ.get('DP_VAULT_PASSPHRASE')))
+
+due_ids = [v['id'] for v in PLAN if v.get('type')=='short' and v.get('approved') is True
+           and v.get('release_at_ist') and now >=
+           dt.datetime.strptime(v['release_at_ist'],'%Y-%m-%d %H:%M').replace(tzinfo=IST)]
+encrypted_files = list((ROOT/'vault').glob('*.zip.enc'))
+has_passphrase = bool(os.environ.get('DP_VAULT_PASSPHRASE'))
+missing = []
+if due_ids and not encrypted_files:
+    missing.append('Encrypted ZIP batch is absent from vault/')
+if due_ids and not has_passphrase:
+    missing.append('GitHub Actions secret DP_VAULT_PASSPHRASE is not configured')
+if missing:
+    for issue in missing:
+        print('::warning title=Short resources on hold::' + issue)
+    print('RELEASE_STATUS=ON_HOLD:', '; '.join(missing))
+else:
+    print('RELEASE_READINESS: required archive and key are present or no Shorts are due')
+summary_file = os.environ.get('GITHUB_STEP_SUMMARY')
+if summary_file:
+    with open(summary_file, 'a', encoding='utf-8') as summary:
+        summary.write('### Digital Pathshala Shorts readiness\n\n')
+        summary.write('- Due Short IDs: '+(', '.join(due_ids) or 'None')+'\n')
+        summary.write('- YouTube IDs verified: '+str(len(DISCOVERED))+'\n')
+        summary.write('- Encrypted resource archive present: '+str(bool(encrypted_files))+'\n')
+        summary.write('- Private decryption secret configured: '+str(has_passphrase)+'\n')
+        summary.write('- Status: '+('ON HOLD — '+ '; '.join(missing) if missing else 'Await build verification')+'\n\n')
+
 for purpose,url in [
     ('official_handle',CONFIG['channel_url']),
     ('rss_feed','https://www.youtube.com/feeds/videos.xml?channel_id='+channel_id),
