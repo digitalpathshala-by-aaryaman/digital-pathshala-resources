@@ -23,9 +23,20 @@ class EncryptedVaultTests(unittest.TestCase):
             total+=len(data)
         self.assertEqual(total,meta["encrypted_file_bytes"])
         self.assertEqual(sha.hexdigest(),meta["encrypted_file_sha256"])
-    def test_only_currently_released_plaintext_zip_is_staged(self):
+    def test_only_verified_published_shorts_have_plaintext_packs(self):
         released=sorted((ROOT/"released_source").glob("short-s*.zip"))
-        self.assertEqual([p.name for p in released],["short-s01.zip"])
+        plan={v["id"]:v for v in json.loads((ROOT/"config/videos.json").read_text())["videos"]}
+        discovered=json.loads((ROOT/"config/discovered.json").read_text())["shorts"]
+        self.assertTrue(released)
+        for path in released:
+            rid=path.stem
+            self.assertIn(rid,discovered,"Never stage an unverified future video ZIP")
+            self.assertIn(rid,plan)
+            self.assertTrue(plan[rid]["approved"])
+            self.assertEqual(
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+                plan[rid]["sha256"],
+                "Only the original verified release ZIP can be staged")
     def test_never_stage_vault_key_in_repository(self):
         self.assertFalse((ROOT/"vault"/"passphrase.txt").exists())
         self.assertFalse((ROOT/"vault"/"DP_VAULT_PASSPHRASE").exists())
