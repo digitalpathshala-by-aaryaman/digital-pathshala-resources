@@ -26,7 +26,18 @@ class EncryptedArchiveTests(unittest.TestCase):
     def test_no_unreleased_plaintext_zip_in_public_source(self):
         published=ROOT/'released_source'
         names=sorted(p.name for p in published.glob('*.zip')) if published.exists() else []
-        self.assertEqual(names,['short-s01.zip'])
+        plan={v['id']:v for v in json.loads((ROOT/'config/videos.json').read_text())['videos']}
+        proofs=json.loads((ROOT/'config/discovered.json').read_text())['shorts']
+        # A public plaintext pack is allowed only after its actual video is
+        # confirmed by YouTube and its original ZIP checksum matches.
+        for filename in names:
+            resource_id=filename[:-4]
+            self.assertIn(resource_id,proofs,'Unverified video pack committed publicly')
+            self.assertIn(resource_id,plan,'Unrecognized video pack')
+            self.assertTrue(plan[resource_id]['approved'])
+            self.assertEqual(
+                hashlib.sha256((published/filename).read_bytes()).hexdigest(),
+                plan[resource_id]['sha256'])
         self.assertFalse(list((ROOT/'vault').rglob('*.zip')),'Future video ZIP found under vault')
         self.assertFalse(list((ROOT/'vault').rglob('*PASSPHRASE*')),'Private passphrase file must not be committed')
 if __name__=='__main__':unittest.main()
