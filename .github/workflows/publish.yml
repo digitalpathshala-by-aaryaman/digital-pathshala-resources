@@ -11,6 +11,7 @@ on:
       - 'scripts/**'
       - 'vault/**'
       - 'independent_source/**'
+      - 'released_source/**'
       - '.github/workflows/publish.yml'
   workflow_dispatch:
   schedule:
